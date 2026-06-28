@@ -1,0 +1,13 @@
+title: Sharran M
+description: Platform engineering, infrastructure, systems, and sharp edges.
+url: "https://msharran.github.io"
+baseurl: ""
+theme: minima
+plugins:
+  - jekyll-feed
+
+minima:
+  skin: classic
+
+header_pages: []
+show_excerpts: false

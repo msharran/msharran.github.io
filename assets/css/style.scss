@@ -1,0 +1,146 @@
+---
+---
+
+@import "minima";
+
+:root {
+  --text: #111;
+  --muted: #666;
+  --faint: #e8e8e8;
+  --paper: #fff;
+}
+
+html {
+  background: var(--paper);
+}
+
+body {
+  color: var(--text);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 18px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+
+.site-header {
+  border-top: 0;
+  border-bottom: 0;
+  min-height: 0;
+  padding-top: 3.5rem;
+}
+
+.wrapper {
+  max-width: 760px;
+  padding-left: 24px;
+  padding-right: 24px;
+}
+
+.site-title,
+.site-title:visited {
+  color: var(--text);
+  float: none;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 22px;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: 1.2;
+}
+
+.site-nav {
+  display: none;
+}
+
+.page-content {
+  padding: 2.2rem 0 4rem;
+}
+
+.hero {
+  margin-bottom: 3.2rem;
+}
+
+.eyebrow {
+  color: var(--muted);
+  font-size: 16px;
+  margin: 0 0 0.55rem;
+}
+
+h1,
+h2 {
+  font-family: Georgia, "Times New Roman", serif;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+}
+
+h1 {
+  font-size: clamp(2.4rem, 7vw, 4.8rem);
+  line-height: 0.95;
+  margin: 0 0 1rem;
+}
+
+.lede {
+  color: #222;
+  font-size: 22px;
+  line-height: 1.4;
+  max-width: 640px;
+}
+
+section + section {
+  border-top: 1px solid var(--faint);
+  padding-top: 1.8rem;
+}
+
+section {
+  margin-bottom: 2.4rem;
+}
+
+h2 {
+  font-size: 25px;
+  line-height: 1.2;
+  margin: 0 0 1rem;
+}
+
+p {
+  margin-bottom: 1rem;
+}
+
+.empty-state {
+  color: var(--muted);
+  font-style: italic;
+}
+
+.site-footer {
+  border-top: 1px solid var(--faint);
+  color: var(--muted);
+  padding: 1.5rem 0 2.5rem;
+}
+
+.footer-heading,
+.contact-list,
+.social-media-list,
+.feed-subscribe,
+.footer-col-wrapper p:not(:first-child) {
+  display: none;
+}
+
+.footer-col-wrapper {
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.footer-col {
+  float: none;
+  width: 100%;
+  margin-bottom: 0;
+}
+
+a,
+a:visited {
+  color: var(--text);
+  text-decoration-color: #bbb;
+  text-underline-offset: 0.16em;
+}
+
+a:hover {
+  color: var(--text);
+  text-decoration-color: var(--text);
+}
