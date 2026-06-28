@@ -6,8 +6,8 @@ layout: default
   <p class="eyebrow">developer · platform engineer · systems tinkerer</p>
   <h1 id="site-title">{ Sharran M }</h1>
   <p class="lede">
-    I build developer platforms, infrastructure automation, and internal tooling
-    that make large engineering teams faster and safer.
+    I write about software, systems, infrastructure, and the small lessons that
+    show up while building and operating things.
   </p>
 </section>
 
@@ -19,16 +19,14 @@ layout: default
 <section class="who-i-am" aria-labelledby="who-title">
   <h2 id="who-title">Who I am</h2>
   <p>
-    I’m a platform and infrastructure engineer based in Bangalore, with 7+ years
-    building and operating production-grade systems. My work sits around
-    Kubernetes, CI/CD, infrastructure-as-code, observability, and Go-based
-    developer tooling.
+    I’m a software engineer based in Bangalore. I spend a lot of time around
+    infrastructure, backend systems, developer tooling, and the edges where code
+    meets operations.
   </p>
   <p>
-    Recently, I’ve worked on EKS migration paths, fleet-scale Pulumi adoption,
-    CI/CD orchestration, secrets automation, and performance improvements across
-    large service platforms. I like turning fragile, manual infrastructure work
-    into boring, repeatable paved roads.
+    I’m interested in how teams build reliable systems, how tools shape the way
+    people work, and how complicated engineering problems can be made simpler
+    through good abstractions and boring defaults.
   </p>
   <p>
     This site will be my engineering notebook: notes on platform engineering,
