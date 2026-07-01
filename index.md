@@ -87,7 +87,7 @@ layout: default
 
       <ol class="devlog-list">
         <li class="devlog-item">
-          <a class="devlog-link" href="{{ '/devlog/20260701-explore-ebpf-trace-all-egress/' | relative_url }}">Explore eBPF: Trace all egress</a>
+          <a class="devlog-link" href="{{ '/devlog/20260701-ebpf-egress-monitor/' | relative_url }}">eBPF egress monitor</a>
           <time class="devlog-date" datetime="2026-07-01">July 1, 2026</time>
         </li>
       </ol>

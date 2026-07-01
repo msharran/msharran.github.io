@@ -1,8 +1,8 @@
 ---
 layout: default
-title: "Explore eBPF: Trace all egress"
+title: "eBPF egress monitor"
 date: 2026-07-01
-permalink: /devlog/20260701-explore-ebpf-trace-all-egress/
+permalink: /devlog/20260701-ebpf-egress-monitor/
 ---
 
 # eBPF egress monitor
