@@ -447,7 +447,7 @@ BPF ring buffer map
 terminal output
 ```
 
-The biggest conceptual jumps for me:
+## Key take aways
 
 1. eBPF C is not normal userspace C.
 2. Go does not call the C function.
@@ -458,3 +458,5 @@ The biggest conceptual jumps for me:
 7. Start with an intentionally stupid POC before adding correctness and enrichment.
 
 From here, the project can grow carefully: add syscall exit when I need results, add DNS parsing when I need names, add container metadata when I need ECS/EKS context, and eventually aggregate into the `top` view from the challenge.
+
+However, I'm going to stop here.
