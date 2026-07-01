@@ -85,23 +85,12 @@ layout: default
     <section class="devlog" aria-labelledby="devlog-title">
       <h2 id="devlog-title">Devlog</h2>
 
-      {% if site.posts.size > 0 %}
-        <ol class="devlog-list">
-          {% for post in site.posts %}
-            <li class="devlog-item">
-              <a class="devlog-link" href="{{ post.url | relative_url }}">{{ post.title }}</a>
-              <time class="devlog-date" datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%B %-d, %Y" }}</time>
-            </li>
-          {% endfor %}
-        </ol>
-      {% else %}
-        <ol class="devlog-list empty-devlog">
-          <li class="devlog-item">
-            <span class="devlog-link">Notes from what I’m building, learning, and exploring will show up here.</span>
-            <span class="devlog-date">Soon</span>
-          </li>
-        </ol>
-      {% endif %}
+      <ol class="devlog-list">
+        <li class="devlog-item">
+          <a class="devlog-link" href="{{ '/devlog/20260701-explore-ebpf-trace-all-egress/' | relative_url }}">Explore eBPF: Trace all egress</a>
+          <time class="devlog-date" datetime="2026-07-01">July 1, 2026</time>
+        </li>
+      </ol>
     </section>
   </section>
 </div>
