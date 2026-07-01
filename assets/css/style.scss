@@ -136,6 +136,7 @@ p {
 a,
 a:visited {
   color: var(--text);
+  text-decoration-line: underline;
   text-decoration-color: #bbb;
   text-underline-offset: 0.16em;
 }
