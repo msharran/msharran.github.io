@@ -6,14 +6,14 @@ layout: default
   <p class="eyebrow">developer · platform engineer · systems tinkerer</p>
   <h1 id="site-title">{ Sharran M }</h1>
   <p class="lede">
-    I write about software, systems, infrastructure, and the small lessons that
-    show up while building and operating things.
+    I keep a devlog of what I develop, learn, explore, and work through in my
+    personal time.
   </p>
 </section>
 
-<section class="writing" aria-labelledby="writing-title">
-  <h2 id="writing-title">Writings</h2>
-  <p class="empty-state">No posts yet.</p>
+<section class="devlog" aria-labelledby="devlog-title">
+  <h2 id="devlog-title">Devlog</h2>
+  <p class="empty-state">Notes from what I’m building, learning, and exploring will show up here.</p>
 </section>
 
 <section class="who-i-am" aria-labelledby="who-title">
@@ -63,9 +63,8 @@ layout: default
     <li><a href="https://github.com/msharran/pragmatic-pi-extensions">https://github.com/msharran/pragmatic-pi-extensions</a></li>
   </ul>
   <p>
-    This site will be my engineering journal. I will be reflecting/writing on
-    the above areas of interests in concise journal entries. Each page will be
-    in my own language — unstructured and unfiltered acting as my brain dump of
-    what I have learnt.
+    This site will be my devlog. I will reflect on the above areas of interest
+    in concise log entries — in my own language, unstructured and unfiltered,
+    acting as a brain dump of what I have learnt.
   </p>
 </section>
