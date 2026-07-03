@@ -9,19 +9,19 @@ permalink: /devlog/20260703-containers-from-scratch-rust-docker/
 
 The entire project discussed in this demo is linked below.
 
-[github.com/msharran/codingchallenges.fyi/docker/rust-docker](https:github.com/msharran/codingchallenges.fyi/blob/main/docker/rust-docker/README.md)
+[github.com/msharran/codingchallenges.fyi/docker/rust-docker](https://github.com/msharran/codingchallenges.fyi/blob/main/docker/rust-docker/README.md)
 
 <!-- Draft goes here. -->
 
 ## Setting Some Context
 
-I know basic rust which I learnt out of curiosity. However, I have written some [projects in Zig](https:github.com/msharran/codingchallenges.fyi/tree/main/redis-server/zig-redis-server), so I know a thing or two about systems programming. I also have a background in Infrastructure engineering, so I know a little bit about linux and containers.
+I know basic rust which I learnt out of curiosity. However, I have written some [projects in Zig](https://github.com/msharran/codingchallenges.fyi/tree/main/redis-server/zig-redis-server), so I know a thing or two about systems programming. I also have a background in Infrastructure engineering, so I know a little bit about linux and containers.
 
 > Note: I consider these devlogs as my personal journal of my learnings. So, I will not be writing a full-fledged article here. I will just write down my learnings and thoughts in a concise manner.
 
 ## My Local Setup
 
-- My development environment for this project is a Ubuntu VM provisioned using [OrbStack](https:orbstack.dev/) running inside a Macbook.
+- My development environment for this project is a Ubuntu VM provisioned using [OrbStack](https://orbstack.dev/) running inside a Macbook.
 
 ```sh
 ~/r/p/c/d/rust-docker> orbctl list
@@ -36,7 +36,7 @@ ubuntu x86_64 GNU/Linux
 ```
 
 - The `rust-docker` binary name called `dkr`, which I will be using in the rest of this devlog.
-- [Alpine Linux](https:alpinelinux.org/) as the container's distribution. Placed it in `/alpine-root` using the following commands,
+- [Alpine Linux](https://alpinelinux.org/) as the container's distribution. Placed it in `/alpine-root` using the following commands,
 
 ```sh
 msharran@ubuntu:rust-docker$ sudo mkdir /alpine-root
@@ -70,8 +70,8 @@ From the code that I have written, it won't exactly feel like docker, however, i
 
 Line 1: 
 - `sudo` — is needed because we need `root` access to provision linux namespaces.
-- `./target/debug/dkr` — is the rust executable build using `cargo build`. (See [Makefile](https:github.com/msharran/codingchallenges.fyi/blob/fc15a9fb6b23838df810eb6ca2b6c24d6bbbb220/docker/rust-docker/Makefile#L1))
-- `sh` — Command to run inside the container. Here it is the [Bourne Shell](https:en.wikipedia.org/wiki/Bourne_shell)
+- `./target/debug/dkr` — is the rust executable build using `cargo build`. (See [Makefile](https://github.com/msharran/codingchallenges.fyi/blob/fc15a9fb6b23838df810eb6ca2b6c24d6bbbb220/docker/rust-docker/Makefile#L1))
+- `sh` — Command to run inside the container. Here it is the [Bourne Shell](https://en.wikipedia.org/wiki/Bourne_shell)
 
 Line 2: 
 - `#` — Shell prompt indicator
@@ -88,7 +88,7 @@ Line 5:
 
 ## Building It
 
-Full project is available [here](https:github.com/msharran/codingchallenges.fyi/blob/fc15a9fb6b23838df810eb6ca2b6c24d6bbbb220/docker/rust-docker/README.md)
+Full project is available [here](https://github.com/msharran/codingchallenges.fyi/blob/fc15a9fb6b23838df810eb6ca2b6c24d6bbbb220/docker/rust-docker/README.md)
 
 **Project Structure**
 
