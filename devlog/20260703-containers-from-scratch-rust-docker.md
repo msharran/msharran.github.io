@@ -192,12 +192,14 @@ fn run() -> Result<(), String> {
 This function implements the main logic of the program.
 It forks the process to create a child that will run in a container.
 The parent process waits for the child to complete.
-We use `fork()` which is unsafe as it creates a completely new process.
-After `fork()` we have two processes running the same code, but the `fork()` call returns different values to each process so they can tell which is which.
+We use [`fork(2)`](https://man7.org/linux/man-pages/man2/fork.2.html) syscall to create a subprocess — which is unsafe operation in Rust.
+After `fork` we have two processes running the same code, but the `fork` call returns different values to each process so they can tell which is which.
 
 We use the [`nix`](https://docs.rs/nix/latest/nix/) crate for all linux operations. 
 
 > Nix crate is a Rust friendly bindings to the various *nix system functions. Modules are structured according to the C header file that they would be defined in.
+
+> Note: We can also use [`clone(2)`](https://man7.org/linux/man-pages/man2/clone.2.html) syscall, however, I felt [`fork(2)`](https://man7.org/linux/man-pages/man2/fork.2.html) with [`unshare(2)`](https://man7.org/linux/man-pages/man2/unshare.2.html) was easier to set up linux containers.
 
 **Waiting For The Child To Exit**
 
@@ -213,3 +215,5 @@ We use the [`nix`](https://docs.rs/nix/latest/nix/) crate for all linux operatio
 ```
 
 Parent calls `waitpid()` on Child. This ensures our `dkr` binary doesn't exit when we spin up a Shell interactively using `dkr /bin/sh`
+
+**Setting Up Container From Child Process**
