@@ -1,11 +1,13 @@
 ---
 layout: default
-title: "eBPF From Scratch: Building a Network Egress Monitor in Go"
+title: "Demystifying eBPF: Building a Tiny Egress Monitor in Go"
 date: 2026-07-01
 permalink: /devlog/20260701-ebpf-egress-monitor/
 ---
 
-# eBPF From Scratch: Building a Network Egress Monitor in Go
+# Demystifying eBPF: Building a Tiny Egress Monitor in Go
+
+> **AI Disclosure**: I used LLM to help me learn eBPF and write it out. I didn't write any code for this. That being said, my intent was to learn eBPF. I was well versed in Go, so I followed first principles and asked the LLM to explain the C/eBPF code to me in Go terms. I also asked it to keep the scope narrow and the learning path small. I did not ask it to write a production-grade tool. I wanted a small proof of concept first, then build up. I have attached all my Pi sessions for reference.
 
 I started this project because I wanted to learn eBPF. So I decided to write a practical tool that runs on a Linux ECS/EKS node and answer one simple question: which process or container is talking to which dependency?
 

@@ -113,7 +113,7 @@ layout: default
         </li>
         <li class="devlog-item">
           <time class="devlog-date" datetime="2026-07-01">July 1, 2026</time>
-          <a class="devlog-link" href="{{ '/devlog/20260701-ebpf-egress-monitor/' | relative_url }}">eBPF From Scratch: Building a Network Egress Monitor in Go</a>
+          <a class="devlog-link" href="{{ '/devlog/20260701-ebpf-egress-monitor/' | relative_url }}">Demystifying eBPF: Building a Tiny Egress Monitor in Go</a>
         </li>
       </ol>
     </section>
