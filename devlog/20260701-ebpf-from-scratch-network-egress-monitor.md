@@ -1,11 +1,11 @@
 ---
 layout: default
-title: "eBPF egress monitor"
+title: "eBPF From Scratch: Building a Network Egress Monitor in Go"
 date: 2026-07-01
 permalink: /devlog/20260701-ebpf-egress-monitor/
 ---
 
-# eBPF egress monitor
+# eBPF From Scratch: Building a Network Egress Monitor in Go
 
 I started this project because I wanted to learn eBPF. So I decided to write a practical tool that runs on a Linux ECS/EKS node and answer one simple question: which process or container is talking to which dependency?
 
