@@ -217,7 +217,7 @@ body::after {
   transform: translateY(-1px);
 }
 
-#tab-about:checked ~ .tab-list .tab-label-about {
+.tab-label-about.is-active {
   background: var(--nav-pill);
   border-color: var(--nav-pill-edge);
   box-shadow: 0 1px 0 rgba(255, 255, 255, 0.04) inset;
@@ -237,29 +237,13 @@ body::after {
 }
 
 .tab-label-devlog:hover,
-#tab-devlog:checked ~ .tab-list .tab-label-devlog {
+.tab-label-devlog.is-active {
   background: var(--cta-orange-hot);
   border-color: rgba(255, 255, 255, 0.13);
   box-shadow:
     0 1px 0 rgba(255, 255, 255, 0.26) inset,
     0 15px 34px rgba(255, 145, 77, 0.18);
   color: var(--cta-ink);
-}
-
-#tab-devlog:checked ~ .tab-list .tab-label-about {
-  background: transparent;
-  border-color: transparent;
-  box-shadow: none;
-  color: rgba(220, 230, 223, 0.76);
-}
-
-.tab-panel {
-  display: none;
-}
-
-#tab-about:checked ~ .about-panel,
-#tab-devlog:checked ~ .devlog-panel {
-  display: block;
 }
 
 .eyebrow,

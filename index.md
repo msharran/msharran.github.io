@@ -3,15 +3,12 @@ layout: default
 ---
 
 <div class="tabs">
-  <input class="tab-input" type="radio" name="home-tabs" id="tab-about" checked>
-  <input class="tab-input" type="radio" name="home-tabs" id="tab-devlog">
-
-  <nav class="tab-list" aria-label="Home sections">
-    <label class="tab-label tab-label-about" for="tab-about">About</label>
-    <label class="tab-label tab-label-devlog" for="tab-devlog">Devlog</label>
+  <nav class="tab-list" aria-label="Site sections">
+    <a class="tab-label tab-label-about is-active" href="{{ '/' | relative_url }}" aria-current="page">About</a>
+    <a class="tab-label tab-label-devlog" href="{{ '/devlog/' | relative_url }}">Devlog</a>
   </nav>
 
-  <section class="tab-panel about-panel" aria-labelledby="tab-about">
+  <section class="about-panel" aria-labelledby="site-title">
     <section class="hero" aria-labelledby="site-title">
       <p class="eyebrow">developer · platform engineer · systems tinkerer</p>
       <h1 id="site-title">{ Sharran M }</h1>
@@ -99,23 +96,6 @@ layout: default
         <li><a href="https://github.com/msharran/protohackers.com">https://github.com/msharran/protohackers.com</a></li>
         <li><a href="https://github.com/msharran/wasm-poc">https://github.com/msharran/wasm-poc</a></li>
       </ul>
-    </section>
-  </section>
-
-  <section class="tab-panel devlog-panel" aria-labelledby="tab-devlog">
-    <section class="devlog" aria-labelledby="devlog-title">
-      <h2 id="devlog-title">Devlog</h2>
-
-      <ol class="devlog-list">
-        <li class="devlog-item">
-          <time class="devlog-date" datetime="2026-07-03">July 3, 2026</time>
-          <a class="devlog-link" href="{{ '/devlog/20260703-containers-from-scratch-rust-docker/' | relative_url }}">Containers From Scratch: Building a Tiny Docker Runtime in Rust</a>
-        </li>
-        <li class="devlog-item">
-          <time class="devlog-date" datetime="2026-07-01">July 1, 2026</time>
-          <a class="devlog-link" href="{{ '/devlog/20260701-ebpf-egress-monitor/' | relative_url }}">Demystifying eBPF: Building a Tiny Egress Monitor in Go</a>
-        </li>
-      </ol>
     </section>
   </section>
 </div>
