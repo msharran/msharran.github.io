@@ -5,8 +5,9 @@ permalink: /devlog/
 ---
 
 <nav class="tab-list" aria-label="Site sections">
-  <a class="tab-label tab-label-about" href="{{ '/' | relative_url }}">About</a>
+  <a class="tab-label tab-label-intro" href="{{ '/' | relative_url }}">Intro</a>
   <a class="tab-label tab-label-devlog is-active" href="{{ '/devlog/' | relative_url }}" aria-current="page">Devlog</a>
+  <a class="tab-label tab-label-profile" href="{{ '/profile/' | relative_url }}">Profile</a>
 </nav>
 
 <section class="devlog" aria-labelledby="devlog-title">

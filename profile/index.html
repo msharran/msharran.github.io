@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sharran M — Lead Software Engineer, Platform & Developer Experience</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Serif:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --page: #081918;
+      --page-deep: #050f0f;
+      --panel: rgba(30, 35, 38, 0.68);
+      --panel-soft: rgba(39, 46, 51, 0.58);
+      --ink: #f5fff7;
+      --link: #dce6df;
+      --text: #cdd8d1;
+      --muted: #99a39e;
+      --quiet: #7f8b86;
+      --grid: rgba(157, 169, 160, 0.26);
+      --grid-strong: rgba(211, 198, 170, 0.24);
+      --rule: rgba(157, 169, 160, 0.16);
+      --code-bg: rgba(30, 35, 38, 0.88);
+      --code-edge: rgba(157, 169, 160, 0.15);
+      --cta-orange: #ff914d;
+      --cta-orange-hot: #ffa56b;
+      --cta-ink: #15110d;
+      --grid-step: 31mm;
+    }
+
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+
+    @page {
+      size: A4;
+      margin: 0;
+    }
+
+    html {
+      background: var(--page-deep);
+    }
+
+    body {
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at 14% -16%, rgba(55, 65, 69, 0.28), transparent 28rem),
+        linear-gradient(180deg, rgba(8, 25, 24, 0.98) 0%, rgba(5, 15, 15, 1) 100%),
+        var(--page-deep);
+      color: var(--text);
+      font-family: "IBM Plex Sans", "Helvetica Neue", sans-serif;
+      font-size: 10.15px;
+      line-height: 1.36;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: geometricPrecision;
+    }
+
+    body::before {
+      background: repeating-linear-gradient(
+        to right,
+        transparent 0,
+        transparent calc(var(--grid-step) - 1px),
+        var(--grid) calc(var(--grid-step) - 1px),
+        var(--grid) var(--grid-step)
+      );
+      content: "";
+      inset: 0;
+      opacity: 0.44;
+      pointer-events: none;
+      position: fixed;
+      z-index: 0;
+      -webkit-mask-image: repeating-linear-gradient(to bottom, #000 0 2px, transparent 2px 12px);
+      mask-image: repeating-linear-gradient(to bottom, #000 0 2px, transparent 2px 12px);
+    }
+
+    body::after {
+      background: linear-gradient(90deg, rgba(5, 15, 15, 0.42), transparent 22%, transparent 78%, rgba(5, 15, 15, 0.52));
+      content: "";
+      inset: 0;
+      pointer-events: none;
+      position: fixed;
+      z-index: 0;
+    }
+
+    .resume {
+      position: relative;
+      z-index: 1;
+      width: 210mm;
+      min-height: 297mm;
+      margin: 0 auto;
+      padding: 11mm 12mm 10mm;
+    }
+
+    header {
+      display: grid;
+      grid-template-columns: minmax(0, 1.33fr) minmax(0, 0.84fr);
+      gap: 14mm;
+      align-items: start;
+      padding-bottom: 5.5mm;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .eyebrow,
+    h2,
+    .section-note,
+    .meta,
+    .metric .label,
+    .skill strong {
+      color: var(--muted);
+      font-family: "IBM Plex Sans", "Helvetica Neue", sans-serif;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+    }
+
+    .eyebrow {
+      margin: 0 0 3.2mm;
+      font-size: 9.3px;
+      line-height: 1.2;
+    }
+
+    h1 {
+      margin: 0 0 4mm;
+      color: var(--ink);
+      font-family: "IBM Plex Serif", Georgia, serif;
+      font-size: 34px;
+      font-weight: 400;
+      letter-spacing: -0.055em;
+      line-height: 0.94;
+    }
+
+    .title {
+      margin: 0 0 4.2mm;
+      color: var(--link);
+      font-size: 12.2px;
+      font-weight: 600;
+      letter-spacing: -0.018em;
+    }
+
+    .summary,
+    .profile {
+      margin: 0;
+      max-width: 74ch;
+      color: var(--text);
+      font-size: 10.6px;
+    }
+
+    .contact {
+      justify-self: end;
+      width: 100%;
+      padding-top: 0.8mm;
+      color: var(--muted);
+      font-size: 9.4px;
+      text-align: right;
+    }
+
+    .contact .row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2.2mm 4mm;
+      justify-content: flex-end;
+      margin-bottom: 2.1mm;
+    }
+
+    a,
+    a:visited {
+      color: var(--link);
+      text-decoration-color: rgba(220, 230, 223, 0.4);
+      text-decoration-line: underline;
+      text-decoration-thickness: 1px;
+      text-underline-offset: 0.17em;
+    }
+
+    .metrics {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 2.8mm;
+      margin: 6.2mm 0 6.5mm;
+    }
+
+    .metric {
+      min-height: 21mm;
+      padding: 3.2mm 3.3mm 3mm;
+      background: var(--panel-soft);
+      border: 1px solid var(--rule);
+      border-radius: 1.6mm;
+      box-shadow: 0 1px 0 rgba(255, 255, 255, 0.025) inset;
+    }
+
+    .metric .value {
+      display: block;
+      margin-bottom: 1.4mm;
+      color: var(--ink);
+      font-family: "IBM Plex Serif", Georgia, serif;
+      font-size: 18.5px;
+      font-weight: 400;
+      letter-spacing: -0.052em;
+      line-height: 0.94;
+    }
+
+    .metric .label {
+      display: block;
+      margin-bottom: 1.2mm;
+      color: var(--cta-orange-hot);
+      font-size: 7.3px;
+      line-height: 1.28;
+    }
+
+    .metric .detail {
+      color: var(--muted);
+      display: block;
+      font-size: 8.25px;
+      line-height: 1.28;
+    }
+
+    section {
+      margin-top: 5.5mm;
+    }
+
+    .section-head {
+      display: flex;
+      align-items: baseline;
+      gap: 3mm;
+      margin-bottom: 3.2mm;
+      padding-bottom: 1.9mm;
+      border-bottom: 1px dotted var(--grid-strong);
+    }
+
+    h2 {
+      margin: 0;
+      color: var(--muted);
+      font-size: 8.5px;
+      line-height: 1.25;
+    }
+
+    .section-note {
+      color: var(--quiet);
+      font-size: 7.7px;
+      letter-spacing: 0.12em;
+    }
+
+    .entry {
+      margin-bottom: 4.4mm;
+      break-inside: avoid;
+    }
+
+    .entry-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 6mm;
+      align-items: baseline;
+      margin-bottom: 1.6mm;
+    }
+
+    .role {
+      color: var(--ink);
+      font-size: 10.6px;
+      font-weight: 700;
+      letter-spacing: -0.012em;
+    }
+
+    .meta {
+      flex: none;
+      color: var(--quiet);
+      font-size: 7.6px;
+      line-height: 1.25;
+      white-space: nowrap;
+    }
+
+    .entry-sub {
+      margin: 0 0 2.2mm;
+      color: var(--muted);
+      font-size: 9.1px;
+    }
+
+    ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    li {
+      position: relative;
+      margin-bottom: 1.45mm;
+      padding-left: 3.6mm;
+      color: var(--text);
+      font-size: 9.45px;
+    }
+
+    li::before {
+      content: "↳";
+      position: absolute;
+      left: 0;
+      top: 0;
+      color: var(--quiet);
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 8.4px;
+    }
+
+    strong {
+      color: var(--link);
+      font-weight: 700;
+    }
+
+    code {
+      background: var(--code-bg);
+      border: 1px solid var(--code-edge);
+      border-radius: 0.9mm;
+      color: var(--ink);
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 0.82em;
+      font-weight: 600;
+      padding: 0.04em 0.26em 0.09em;
+    }
+
+    .skills {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1.9mm 6mm;
+    }
+
+    .skill {
+      color: var(--text);
+      font-size: 9.15px;
+    }
+
+    .skill strong {
+      display: inline-block;
+      min-width: 24mm;
+      color: var(--muted);
+      font-size: 7.2px;
+      letter-spacing: 0.12em;
+    }
+
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6mm;
+    }
+
+    .compact li {
+      margin-bottom: 1.2mm;
+      font-size: 9px;
+    }
+
+    .education,
+    .fineprint {
+      color: var(--text);
+      font-size: 9.2px;
+    }
+
+    .fineprint {
+      margin: 1.6mm 0 0;
+      color: var(--quiet);
+    }
+
+
+    .profile-topbar {
+      align-items: center;
+      backdrop-filter: blur(16px) saturate(118%);
+      background: linear-gradient(180deg, rgba(8, 25, 24, 0.96), rgba(8, 25, 24, 0.84));
+      border-bottom: 1px solid rgba(157, 169, 160, 0.14);
+      display: flex;
+      justify-content: space-between;
+      left: 0;
+      min-height: 72px;
+      padding: 0 clamp(20px, 5.4vw, 78px);
+      position: fixed;
+      right: 0;
+      top: 0;
+      z-index: 20;
+    }
+
+    .profile-brand,
+    .profile-brand:visited {
+      color: var(--link);
+      font-family: "IBM Plex Sans", "Helvetica Neue", sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      line-height: 1.2;
+      text-decoration: none;
+      text-transform: uppercase;
+    }
+
+    .profile-brand::before {
+      color: var(--quiet);
+      content: "// ";
+      font-weight: 500;
+      letter-spacing: 0.08em;
+    }
+
+    .profile-nav {
+      align-items: center;
+      display: flex;
+      gap: clamp(12px, 1.4vw, 24px);
+      margin: 0;
+    }
+
+    .profile-nav a,
+    .profile-nav a:visited {
+      border: 1px solid transparent;
+      border-radius: 6px;
+      color: rgba(220, 230, 223, 0.88);
+      font-family: "IBM Plex Sans", "Helvetica Neue", sans-serif;
+      font-size: clamp(14px, 0.95vw, 16px);
+      font-weight: 500;
+      line-height: 1;
+      padding: 9px 10px 10px;
+      text-decoration: none;
+      transition: background-color 160ms ease, border-color 160ms ease, color 160ms ease, transform 160ms ease;
+    }
+
+    .profile-nav a:hover {
+      background: rgba(211, 230, 223, 0.06);
+      color: #fff;
+      transform: translateY(-1px);
+    }
+
+    .profile-nav .is-active,
+    .profile-nav .is-active:visited {
+      background: rgba(211, 230, 223, 0.075);
+      border-color: rgba(211, 230, 223, 0.055);
+      box-shadow: 0 1px 0 rgba(255, 255, 255, 0.04) inset;
+      color: #fff;
+    }
+
+    .profile-nav .is-active {
+      order: 2;
+    }
+
+    .profile-nav .nav-cta,
+    .profile-nav .nav-cta:visited {
+      background: var(--cta-orange);
+      border-color: rgba(255, 255, 255, 0.13);
+      box-shadow: 0 1px 0 rgba(255,255,255,0.22) inset, 0 12px 30px rgba(255,145,77,0.12);
+      color: var(--cta-ink);
+      font-weight: 700;
+      margin-left: clamp(6px, 0.8vw, 14px);
+      order: 3;
+      padding-left: 13px;
+      padding-right: 13px;
+    }
+
+    .profile-nav .nav-cta:hover {
+      background: var(--cta-orange-hot);
+      color: var(--cta-ink);
+    }
+
+    @media (max-width: 640px) {
+      .profile-topbar {
+        align-items: flex-start;
+        flex-direction: column;
+        justify-content: center;
+        min-height: 96px;
+        padding: 0 16px;
+      }
+
+      .profile-brand,
+      .profile-brand:visited {
+        font-size: 12px;
+        letter-spacing: 0.12em;
+        margin-bottom: 12px;
+      }
+
+      .profile-nav {
+        gap: 8px;
+      }
+
+      .profile-nav a,
+      .profile-nav a:visited {
+        border-radius: 7px;
+        font-size: 13px;
+        padding: 9px 8px 10px;
+      }
+
+      .profile-nav .nav-cta,
+      .profile-nav .nav-cta:visited {
+        padding-left: 10px;
+        padding-right: 10px;
+      }
+    }
+
+    @media screen and (max-width: 640px) {
+      .resume {
+        max-width: 360px;
+      }
+    }
+
+    @media screen {
+      body { padding: 26mm 0 8mm; }
+      .resume {
+        box-shadow: 0 28px 90px rgba(0, 0, 0, 0.36);
+      }
+    }
+
+    @media screen and (max-width: 840px) {
+      body { padding: 120px 0 28px; }
+      .resume {
+        margin: 0 auto;
+        min-height: auto;
+        padding: 24px 22px 28px;
+        width: min(100% - 28px, 720px);
+      }
+      header,
+      .entry-head,
+      .two-col {
+        grid-template-columns: 1fr;
+      }
+      header {
+        gap: 20px;
+      }
+      .contact,
+      .row {
+        justify-self: start;
+        justify-content: flex-start;
+        text-align: left;
+      }
+      .metrics,
+      .skills {
+        grid-template-columns: 1fr;
+      }
+      .title,
+      .summary,
+      .profile,
+      .row,
+      a,
+      li {
+        overflow-wrap: anywhere;
+      }
+    }
+
+    @media screen and (max-width: 460px) {
+      .resume {
+        padding: 22px 18px 26px;
+        width: calc(100% - 24px);
+      }
+      h1 { font-size: 34px; }
+      .title { font-size: 12px; }
+      .metrics,
+      .skills {
+        gap: 10px;
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media print {
+      body {
+        width: 210mm;
+        height: 297mm;
+        padding: 0;
+        margin: 0;
+      }
+      .profile-topbar { display: none; }
+      .resume {
+        margin: 0;
+        box-shadow: none;
+      }
+      a { color: var(--link); }
+      .metric, .section-head, .entry, section { break-inside: avoid; }
+      * {
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav class="profile-topbar" aria-label="Site sections">
+    <a class="profile-brand" href="/">Sharran M</a>
+    <div class="profile-nav">
+      <a href="/">Intro</a>
+      <a class="nav-cta" href="/devlog/">Devlog</a>
+      <a class="is-active" href="/profile/" aria-current="page">Profile</a>
+    </div>
+  </nav>
+  <main class="resume">
+    <header>
+      <div>
+        <p class="eyebrow">developer · platform engineer · systems tinkerer</p>
+        <h1>{ Sharran M }</h1>
+        <p class="title">Lead Software Engineer · Platform Engineering & Developer Experience</p>
+        <p class="summary">
+          Staff+ platform engineer with 7+ years building developer platforms, infra automation, and internal tooling for ~1,000 engineers. I build systems that reduce cognitive load for product teams: CI/CD orchestration, infrastructure automation, migration tooling, and operational guardrails.
+        </p>
+      </div>
+      <div class="contact" aria-label="Contact information">
+        <div class="row"><span>+91 7502215354</span><span>sharran.murali@gmail.com</span></div>
+        <div class="row"><span>Bangalore, India</span></div>
+        <div class="row">
+          <a href="https://msharran.github.io/">msharran.github.io</a>
+          <a href="https://msharran.github.io/devlog/">msharran.github.io/devlog</a>
+          <a href="https://linkedin.com/in/sharran-m">linkedin.com/in/sharran-m</a>
+          <a href="https://github.com/msharran">github.com/msharran</a>
+        </div>
+      </div>
+    </header>
+
+    <div class="metrics" aria-label="Recent platform highlights">
+      <div class="metric">
+        <span class="value">55%</span>
+        <span class="label">CI/CD latency reduction</span>
+        <span class="detail">18 min → 8 min across ECS, EKS, and Lambda workflows.</span>
+      </div>
+      <div class="metric">
+        <span class="value">1 config</span>
+        <span class="label">on-demand EKS path</span>
+        <span class="detail"><code>deployment_platform: eks</code> enabled opt-in Kubernetes deployments.</span>
+      </div>
+      <div class="metric">
+        <span class="value">900+</span>
+        <span class="label">services migrated to Pulumi</span>
+        <span class="detail">Migrated 900+ of 1,400 services in 5 months after the migration had stalled.</span>
+      </div>
+      <div class="metric">
+        <span class="value">40%</span>
+        <span class="label">DevEx satisfaction increase</span>
+        <span class="detail">Centralized legacy CI validation into GitHub Checks with zero repo-level config.</span>
+      </div>
+    </div>
+
+    <section id="profile">
+      <div class="section-head">
+        <h2>Profile</h2>
+        <div class="section-note">Impact-first systems engineering</div>
+      </div>
+      <p class="profile">
+        Recent work includes fleet-scale Pulumi migration, an EKS platform adopted on demand for persistent/data workloads, CI/CD performance optimization, webhook-driven GitHub Checks, and self-service infrastructure systems that reduce downtime, lead time, and manual coordination across platform teams.
+      </p>
+    </section>
+
+    <section id="experience">
+      <div class="section-head">
+        <h2>Experience</h2>
+        <div class="section-note">Selected impact</div>
+      </div>
+
+      <article class="entry">
+        <div class="entry-head">
+          <div class="role">Lead Software Engineer, Platform Engineering — CRED</div>
+          <div class="meta">Jan 2023–Present · Promoted Apr 2025</div>
+        </div>
+        <ul>
+          <li><strong>CI/CD performance:</strong> Re-architected the global delivery pipeline with parallel stages, persistent artifact caching, and optimized S3 staging, cutting end-to-end latency <strong>55% (18 min → 8 min)</strong> across ECS, EKS, and Lambda workflows.</li>
+          <li><strong>Pulumi migration at fleet scale:</strong> Migrated <strong>900+ of 1,400 services</strong> to Pulumi in 5 months, reviving a stalled migration with automated CloudFormation→Pulumi code generation, dependency-graph inference, Route53 weight-stepping rollout, and LLM-assisted review steps.</li>
+          <li><strong>EKS platform:</strong> Built an opt-in ECS→EKS path through one config change (<code>deployment_platform: eks</code>), supporting stateless services and StatefulSet-backed persistent workloads such as event logging and ingestion services. The platform was widely adopted for persistent workloads by data platform and database teams, and used Pulumi Helm deployments to self-host Cassandra, Karpenter, and Istio Gateway through the same in-house YAML interface teams already used for ECS.</li>
+          <li><strong>CI/CD quality guardrails:</strong> Stabilized legacy Bash, Go, and Python CI/CD systems by introducing unit tests across critical execution paths, reducing recurring downtime from <strong>3–4 incidents/month to near zero</strong>.</li>
+          <li><strong>GitHub Checks modernization:</strong> Centralized legacy CI validation into a webhook-driven GitHub Checks service with <strong>zero per-repository developer configuration</strong>, improving feedback quality and raising DevEx satisfaction by <strong>40%</strong>.</li>
+          <li><strong>CI/CD knowledge assistant:</strong> Built and released a Skill + CLI assistant that lets local coding agents answer platform questions and safely edit config files using grounded, source-backed context.</li>
+          <li><strong>Project Caterpillar:</strong> Designed a Go-based CLI and orchestration layer with an acyclic dependency model, declarative YAML DSL, and Pulumi Automation API engine for safer platform rollouts.</li>
+          <li><strong>Async orchestration:</strong> Built a secure SQS + client-go workqueue layer with custom Git-push triggers, enabling pipeline execution across 1,000+ microservices without exposing Jenkins to the internet.</li>
+        </ul>
+      </article>
+
+      <article class="entry">
+        <div class="entry-head">
+          <div class="role">Senior Software Engineer, Site Reliability — Freshworks</div>
+          <div class="meta">Jun 2022–Dec 2022</div>
+        </div>
+        <ul>
+          <li><strong>Async operators:</strong> Extended Kubernetes operators with asynchronous reconciliation to sync AWS Secrets Manager → Lambda via a custom CRD, enabling automated secret rotation for serverless workloads.</li>
+          <li><strong>Developer tooling:</strong> Built <code>secretctl</code>, a Go CLI that gave developers a kubectl-like workflow for secrets and replaced ticket-driven operations with self-service.</li>
+        </ul>
+      </article>
+
+      <article class="entry">
+        <div class="entry-head">
+          <div class="role">Software Engineer, Cloud Infrastructure — Freshworks</div>
+          <div class="meta">Aug 2021–Jun 2022</div>
+        </div>
+        <ul>
+          <li><strong>Self-service VPC pipeline:</strong> Authored AWS CDK provisioning that cut infrastructure request turnaround from days to minutes.</li>
+          <li><strong>Teleport at scale:</strong> Automated Teleport access-proxy deployment across <strong>180+ AWS accounts</strong> via a Go-based Jenkins pipeline.</li>
+        </ul>
+      </article>
+
+      <article class="entry">
+        <div class="entry-head">
+          <div class="role">Earlier Experience</div>
+          <div class="meta">2019–2021</div>
+        </div>
+        <ul>
+          <li><strong>Techjays:</strong> Led iOS delivery to 5+ App Store releases (100K+ installs); built React on ECS Fargate for real-time analytics.</li>
+          <li><strong>Gofrugal:</strong> Core contributor to an Android POS app; focused on performance optimization and tablet-to-mobile UI adaptation.</li>
+        </ul>
+      </article>
+    </section>
+
+    <section id="leadership">
+      <div class="section-head">
+        <h2>Leadership</h2>
+        <div class="section-note">Mentorship and cross-org influence</div>
+      </div>
+      <ul class="compact">
+        <li><strong>Mentorship:</strong> Mentored 11+ engineers across CRED and Freshworks; led a 5-person team (2 juniors, 3 interns) on the Pulumi migration.</li>
+        <li><strong>Career outcomes:</strong> Sponsored one promotion from L3 to L4 and nominated 3 interns for full-time conversion based on demonstrable impact.</li>
+        <li><strong>Cross-org influence:</strong> Re-established a repeatable migration pattern that is now used by the SRE team without escalation.</li>
+      </ul>
+    </section>
+
+    <section id="skills">
+      <div class="section-head">
+        <h2>Skills & Certifications</h2>
+        <div class="section-note">Depth across platform layers</div>
+      </div>
+      <div class="skills">
+        <div class="skill"><strong>Languages</strong> Go, Python, Ruby · Zig & Rust (exploring)</div>
+        <div class="skill"><strong>Platform</strong> Kubernetes, EKS, Operators, client-go, Docker</div>
+        <div class="skill"><strong>IaC</strong> Pulumi, Terraform, AWS CDK</div>
+        <div class="skill"><strong>AWS</strong> EKS, ECS, Lambda, SQS, Route53, Secrets Manager</div>
+        <div class="skill"><strong>Observability</strong> Datadog APM, Loki, Prometheus, Grafana</div>
+        <div class="skill"><strong>AI-assisted</strong> MCP servers, agent workflows, incident and risk analysis</div>
+        <div class="skill"><strong>Certifications</strong> <a href="https://www.credly.com/badges/5d032437-d999-4abe-9480-8d8871e638d3">CKA</a> · <a href="https://www.credly.com/badges/f041c352-0c67-46e7-98d4-21a705ad655e">AWS SAA</a></div>
+      </div>
+    </section>
+
+    <section id="craft">
+      <div class="section-head">
+        <h2>Technical Craft</h2>
+        <div class="section-note">Selected projects and open source</div>
+      </div>
+      <div class="two-col">
+        <div>
+          <div class="entry-head" style="margin-bottom: 1.6mm;">
+            <div class="role" style="font-size: 9.8px;">Selected Projects</div>
+          </div>
+          <ul class="compact">
+            <li><strong>Redis-in-Zig:</strong> High-performance Redis server in Zig; featured as the reference solution by CodingChallengesFYI. <a href="https://github.com/CodingChallengesFYI/SharedSolutions/pull/457">PR</a></li>
+            <li><strong>CodingChallengesFYI:</strong> Zig and Rust implementations for strace, reverse proxy, load balancer, and a tiny Docker runtime. <a href="https://github.com/msharran/codingchallenges.fyi">repo</a> · <a href="/devlog/20260703-containers-from-scratch-rust-docker/">containers devlog</a></li>
+            <li><strong>eBPF egress monitor:</strong> Go + eBPF network egress monitor with DNS-aware trace output and a detailed devlog. <a href="https://msharran.github.io/devlog/20260701-ebpf-egress-monitor/">devlog</a></li>
+            <li><strong>Protohackers:</strong> Network-protocol challenge solutions in Go. <a href="http://github.com/msharran/protohackers.com">repo</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="entry-head" style="margin-bottom: 1.6mm;">
+            <div class="role" style="font-size: 9.8px;">OSS Involvements</div>
+          </div>
+          <ul class="compact">
+            <li><strong>Minikube:</strong> Added directory support to <code>minikube cp</code>. <a href="https://github.com/kubernetes/minikube/pull/15519">merged PR</a></li>
+            <li><strong>Wasmer Ruby:</strong> Patched a Bundler 2.0 compatibility bug. <a href="https://github.com/wasmerio/wasmer-ruby/pull/71">merged PR</a></li>
+            <li><strong>Ghostty:</strong> Early tester; reported a macOS shell-integration selection bug. <a href="https://github.com/ghostty-org/ghostty/discussions/4666">discussion</a></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="education">
+      <div class="section-head">
+        <h2>Education</h2>
+        <div class="section-note">Formal training</div>
+      </div>
+      <div class="education">
+        <strong>SASTRA Deemed University, Thanjavur</strong> — B.Tech in Electronics & Communications Engineering (2015–19)
+      </div>
+      <p class="fineprint">References, code samples, and project links available on request.</p>
+    </section>
+  </main>
+</body>
+</html>
