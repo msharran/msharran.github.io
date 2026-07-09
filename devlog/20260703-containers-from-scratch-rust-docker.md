@@ -262,3 +262,65 @@ impl Container {
 It is a simple struct that stores the process ID and command of the Child Process.
 
 **Moving Child To A Namespace**
+
+Inside `Container::run()`, the first important thing we do is move the child process into new Linux namespaces.
+
+```rs
+pub fn run(&mut self) -> Result<(), String> {
+    write_stdout(format!(
+        "INFO I'm a new child process with pid {}\n",
+        self.pid
+    ));
+
+    // Move the current process into a namespace. We can do this
+    // by unsharing its CLONE_* flags.
+    nix::sched::unshare(CloneFlags::CLONE_NEWUTS | CloneFlags::CLONE_NEWPID)
+        .map_err(|e| format!("ERROR Failed to unshare UTS namespace: {}", e))?;
+
+    // change hostname
+    nix::unistd::sethostname("container")
+        .map_err(|e| format!("ERROR Failed to set hostname: {}", e))?;
+    ...
+}
+```
+
+A Linux namespace gives a process an isolated view of some system resource. Containers are mostly built by combining a bunch of these namespaces: PID, UTS, mount, network, IPC, user namespaces, and so on.
+
+Here, I am creating two namespaces:
+
+- `CLONE_NEWUTS` — creates a new UTS namespace. This isolates the hostname and domain name.
+- `CLONE_NEWPID` — creates a new PID namespace. This isolates the process tree seen by processes inside the container.
+
+The UTS namespace is what makes this line safe:
+
+```rs
+nix::unistd::sethostname("container")
+```
+
+Without `CLONE_NEWUTS`, changing the hostname would affect the host machine. With the new UTS namespace, only processes inside this container-like environment see the hostname as `container`.
+
+The PID namespace has one subtle behavior that I initially had to pause on: the process that calls `unshare(CLONE_NEWPID)` does not immediately become PID `1` inside the new namespace. Instead, the next child process created after the `unshare()` call becomes PID `1` in that namespace.
+
+That is why this later `spawn()` is important:
+
+```rs
+let command = process::Command::new(&self.command[0])
+    .args(&self.command[1..])
+    .stdin(process::Stdio::inherit())
+    .stdout(process::Stdio::inherit())
+    .stderr(process::Stdio::inherit())
+    .spawn();
+```
+
+The `dkr` child process calls `unshare()`, sets up the container environment, and then spawns the actual command. That spawned command is the one that becomes PID `1` inside the new PID namespace.
+
+So the rough process hierarchy looks like this:
+
+```txt
+host shell
+└── dkr parent process
+    └── dkr child process
+        └── command running inside new PID namespace as PID 1
+```
+
+At this point, the command has an isolated hostname and an isolated process tree. This is one of the core building blocks that makes the process start to feel like it is running inside a container instead of directly on the host.
