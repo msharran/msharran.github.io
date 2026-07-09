@@ -88,7 +88,7 @@ Line 5:
 
 ## Building It
 
-Full project is available [here](https://github.com/msharran/codingchallenges.fyi/blob/fc15a9fb6b23838df810eb6ca2b6c24d6bbbb220/docker/rust-docker/README.md)
+Full project is available [here](https://github.com/msharran/codingchallenges.fyi/tree/fc15a9fb6b23838df810eb6ca2b6c24d6bbbb220/docker/rust-docker)
 
 **Project Structure**
 
@@ -217,3 +217,48 @@ We use the [`nix`](https://docs.rs/nix/latest/nix/) crate for all Linux operatio
 The parent calls `waitpid()` on the child. This ensures our `dkr` binary doesn't exit when we spin up an interactive shell using `dkr /bin/sh`.
 
 **Setting Up the Container from the Child Process**
+
+```rs
+        Ok(ForkResult::Child) => {
+            // Only pass the command and arguments that needs to run
+            // inside the container
+            let args = args[1..].to_vec();
+            let run_result = Container::new(args).run();
+            if let Err(err) = run_result {
+                eprintln!("Container error: {}", err);
+            }
+        }
+```
+
+We create a new `Container` instance and call its `run()` method. This is where we will set up the container environment and execute the command. More on this in the next section.
+
+> Note: We pass only the command and its arguments to the `Container` instance, excluding the `dkr` binary itself.
+
+**Gist Of Overall Flow**
+
+This is the overall flow of the program. The parent process waits for the child to finish, and the child sets up the container and runs the command.
+
+**Initializing The `Container` Object**
+
+See full [container.rs here](https://github.com/msharran/codingchallenges.fyi/blob/fc15a9fb6b23838df810eb6ca2b6c24d6bbbb220/docker/rust-docker/src/container.rs)
+
+```rs
+use std::process::{self};
+
+pub struct Container {
+    pid: String,
+    command: Vec<String>,
+}
+
+impl Container {
+    pub fn new(command: Vec<String>) -> Self {
+        Container {
+            pid: process::id().to_string(),
+            command,
+        }
+    }
+```
+
+It is a simple struct that stores the process ID and command of the Child Process.
+
+**Moving Child To A Namespace**
