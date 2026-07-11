@@ -2,13 +2,9 @@
 layout: default
 ---
 
-<div class="tabs">
-  <nav class="tab-list" aria-label="Site sections">
-    <a class="tab-label tab-label-intro is-active" href="{{ '/' | relative_url }}" aria-current="page">Intro</a>
-    <a class="tab-label tab-label-devlog" href="{{ '/devlog/' | relative_url }}">Devlog</a>
-    <a class="tab-label tab-label-profile" href="{{ '/profile/' | relative_url }}">Profile</a>
-  </nav>
+{% include sidebar.html %}
 
+<div class="tabs">
   <section class="about-panel" aria-labelledby="site-title">
     <section class="hero" aria-labelledby="site-title">
       <p class="eyebrow">developer · platform engineer · systems tinkerer</p>

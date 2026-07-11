@@ -1,0 +1,22 @@
+{%- assign current_path = page.url | default: '/' -%}
+<aside class="site-sidebar" aria-label="Site navigation">
+  <a class="site-sidebar__brand" href="{{ '/' | relative_url }}" aria-label="Sharran M, home">
+    <span class="site-sidebar__mark" aria-hidden="true">SM</span>
+    <span class="site-sidebar__name">Sharran M</span>
+  </a>
+
+  <nav class="site-sidebar__nav" aria-label="Site sections">
+    <a class="site-sidebar__link{% if current_path == '/' %} is-active{% endif %}"
+       href="{{ '/' | relative_url }}"{% if current_path == '/' %} aria-current="page"{% endif %}>
+      <span class="site-sidebar__dot" aria-hidden="true"></span>Intro
+    </a>
+    <a class="site-sidebar__link{% if current_path contains '/devlog/' %} is-active{% endif %}"
+       href="{{ '/devlog/' | relative_url }}"{% if current_path contains '/devlog/' %} aria-current="page"{% endif %}>
+      <span class="site-sidebar__dot" aria-hidden="true"></span>Devlog
+    </a>
+    <a class="site-sidebar__link{% if current_path contains '/profile/' %} is-active{% endif %}"
+       href="{{ '/profile/' | relative_url }}"{% if current_path contains '/profile/' %} aria-current="page"{% endif %}>
+      <span class="site-sidebar__dot" aria-hidden="true"></span>Profile
+    </a>
+  </nav>
+</aside>

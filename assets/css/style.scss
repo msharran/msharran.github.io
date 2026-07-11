@@ -171,87 +171,6 @@ body::after {
   padding-top: clamp(1rem, 5.8vw, 4.7rem);
 }
 
-.tab-input {
-  opacity: 0;
-  pointer-events: none;
-  position: absolute;
-}
-
-.tab-list {
-  align-items: center;
-  display: flex;
-  gap: clamp(0.56rem, 1.2vw, 1.25rem);
-  justify-content: flex-end;
-  margin: 0;
-  position: fixed;
-  right: var(--page-pad);
-  top: clamp(1.38rem, 2.15vw, 1.78rem);
-  z-index: 6;
-}
-
-.tab-label {
-  border: 1px solid transparent;
-  border-radius: 0.34rem;
-  color: rgba(220, 230, 223, 0.86);
-  cursor: pointer;
-  display: inline-flex;
-  font-family: "IBM Plex Sans", "Helvetica Neue", sans-serif;
-  font-size: clamp(0.86rem, 0.95vw, 0.98rem);
-  font-weight: 500;
-  letter-spacing: -0.012em;
-  line-height: 1;
-  padding: 0.58rem 0.68rem 0.63rem;
-  text-decoration: none;
-  text-transform: none;
-  transition:
-    background-color 160ms ease,
-    border-color 160ms ease,
-    box-shadow 160ms ease,
-    color 160ms ease,
-    transform 160ms ease;
-}
-
-.tab-label:hover {
-  background: rgba(211, 230, 223, 0.06);
-  color: #fff;
-  transform: translateY(-1px);
-}
-
-.tab-label.is-active:not(.tab-label-devlog) {
-  background: var(--nav-pill);
-  border-color: var(--nav-pill-edge);
-  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.04) inset;
-  color: #fff;
-}
-
-.tab-label-profile {
-  order: 2;
-}
-
-.tab-label-devlog {
-  background: var(--cta-orange);
-  border-radius: 0.34rem;
-  box-shadow:
-    0 1px 0 rgba(255, 255, 255, 0.22) inset,
-    0 12px 30px rgba(255, 145, 77, 0.12);
-  color: var(--cta-ink);
-  font-weight: 700;
-  margin-left: clamp(0.45rem, 1vw, 0.9rem);
-  order: 3;
-  padding-left: 0.82rem;
-  padding-right: 0.82rem;
-}
-
-.tab-label-devlog:hover,
-.tab-label-devlog.is-active {
-  background: var(--cta-orange-hot);
-  border-color: rgba(255, 255, 255, 0.13);
-  box-shadow:
-    0 1px 0 rgba(255, 255, 255, 0.26) inset,
-    0 15px 34px rgba(255, 145, 77, 0.18);
-  color: var(--cta-ink);
-}
-
 .eyebrow,
 .post-meta,
 h2,
@@ -641,23 +560,6 @@ a:hover {
     min-height: 6.45rem;
   }
 
-  .tab-list {
-    gap: 0.38rem;
-    left: auto;
-    right: 0.8rem;
-    top: 3.9rem;
-  }
-
-  .tab-label {
-    font-size: 0.94rem;
-    padding: 0.65rem 0.72rem 0.69rem;
-  }
-
-  .tab-label-devlog {
-    padding-left: 0.76rem;
-    padding-right: 0.76rem;
-  }
-
   .page-content {
     padding-top: 4.3rem;
   }
@@ -699,22 +601,4 @@ a:hover {
     letter-spacing: 0.12em;
   }
 
-  .tab-list {
-    gap: 0.18rem;
-    left: auto;
-    right: 0.65rem;
-    top: 3.75rem;
-  }
-
-  .tab-label {
-    border-radius: 0.38rem;
-    font-size: 0.82rem;
-    padding: 0.54rem 0.48rem 0.58rem;
-  }
-
-  .tab-label-devlog {
-    margin-left: 0.08rem;
-    padding-left: 0.62rem;
-    padding-right: 0.62rem;
-  }
 }
