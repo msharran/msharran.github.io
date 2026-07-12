@@ -73,6 +73,15 @@
   transform: translateX(0.18rem);
 }
 
+.site-sidebar__new-tab {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.76em;
+  line-height: 1;
+  margin-left: -0.2rem;
+  opacity: 0.72;
+  transform: translateY(-0.08rem);
+}
+
 .site-sidebar__dot {
   background: transparent;
   border-radius: 50%;
