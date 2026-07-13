@@ -15,11 +15,6 @@
        href="{{ '/devlog/' | relative_url }}"{% if current_path contains '/devlog/' %} aria-current="page"{% endif %}>
       <span class="site-sidebar__dot" aria-hidden="true"></span>Devlog
     </a>
-    <a class="site-sidebar__link{% if current_path contains '/profile/' %} is-active{% endif %}"
-       href="{{ '/profile/' | relative_url }}" target="_blank" rel="noopener noreferrer"
-       aria-label="Profile (opens in a new tab)">
-      <span class="site-sidebar__dot" aria-hidden="true"></span>Profile<span class="site-sidebar__new-tab" aria-hidden="true">↗</span>
-    </a>
   </nav>
   {% endunless %}
 </aside>

@@ -19,6 +19,14 @@ layout: default
       <h2 id="follow-title">Follow Sharran</h2>
       <ul class="social-icon-list">
         <li>
+          <a href="{{ '/profile/' | relative_url }}" target="_blank" rel="noopener noreferrer"
+             aria-label="View Sharran's profile (opens in a new tab)">
+            <svg aria-hidden="true" viewBox="0 0 24 24" focusable="false">
+              <path d="M12 12a5 5 0 1 0 0-10 5 5 0 0 0 0 10Zm0 2c-5.52 0-10 2.24-10 5v3h20v-3c0-2.76-4.48-5-10-5Z" />
+            </svg>
+          </a>
+        </li>
+        <li>
           <a href="https://x.com/msharran97" rel="me" aria-label="Follow Sharran on X.com">
             <svg aria-hidden="true" viewBox="0 0 24 24" focusable="false">
               <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817-5.963 6.817H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231Zm-1.161 17.52h1.833L7.084 4.126H5.117Z" />
