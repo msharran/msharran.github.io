@@ -326,3 +326,47 @@ host shell
 ```
 
 At this point, the command has an isolated hostname and an isolated process tree. This is one of the core building blocks that makes the process start to feel like it is running inside a container instead of directly on the host.
+
+**Changing The Root Filesystem**
+
+At this point, the command has an isolated hostname and process tree. However, it can still see the host machine's filesystem.
+
+I use [`chroot(2)`](https://man7.org/linux/man-pages/man2/chroot.2.html) to change the root directory seen by the command:
+
+```rs
+// change root
+nix::unistd::chroot("/alpine-root")
+    .map_err(|e| format!("Failed to change root: {}", e))?;
+```
+
+After this call, `/alpine-root` becomes `/` for the command running inside the container.
+
+For example, these paths will now point to files inside the Alpine root filesystem:
+
+```text
+/bin/sh         -> /alpine-root/bin/sh
+/etc/os-release -> /alpine-root/etc/os-release
+```
+
+This is why running `cat /etc/os-release` inside the container shows Alpine Linux:
+
+```sh
+# cat /etc/os-release
+NAME="Alpine Linux"
+ID=alpine
+VERSION_ID=3.24.1
+...
+```
+
+It is important to note that we are not running an Alpine kernel. Containers share the host machine's Linux kernel. In this case, Alpine only provides the userspace files and commands inside `/alpine-root`.
+
+> Note: `chroot()` is not a security boundary by itself. This project does not yet create a mount namespace, mount `/proc`, isolate the network, or restrict resources using cgroups. It only changes the filesystem root seen by the command.
+
+One small detail I still need to address is the current working directory. `chroot()` changes the root directory, but it does not automatically move the process into that directory. The safer version would call `chdir("/")` immediately afterward:
+
+```rs
+nix::unistd::chdir("/")
+    .map_err(|e| format!("Failed to change directory: {}", e))?;
+```
+
+This ensures the process starts from `/` inside the new root filesystem.
