@@ -5,6 +5,8 @@ date: 2026-07-03
 permalink: /devlog/20260703-containers-from-scratch-rust-docker/
 ---
 
+{% include sidebar.html %}
+
 # [WIP] Containers From Scratch: Building a Tiny Docker Runtime in Rust
 
 The entire project discussed in this demo is linked below.
@@ -316,7 +318,7 @@ The `dkr` child process calls `unshare()`, sets up the container environment, an
 
 So the rough process hierarchy looks like this:
 
-```txt
+```text
 host shell
 └── dkr parent process
     └── dkr child process

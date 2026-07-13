@@ -5,6 +5,8 @@ date: 2026-07-01
 permalink: /devlog/20260701-ebpf-egress-monitor/
 ---
 
+{% include sidebar.html %}
+
 # Demystifying eBPF: Building a Tiny Egress Monitor in Go
 
 > **AI Disclosure**: I used LLM to help me learn eBPF and write it out. I didn't write any code for this. That being said, my intent was to learn eBPF. I was well versed in Go, so I followed first principles and asked the LLM to explain the C/eBPF code to me in Go terms. I also asked it to keep the scope narrow and the learning path small. I did not ask it to write a production-grade tool. I wanted a small proof of concept first, then build up. I have attached all my Pi sessions for reference.
