@@ -1,13 +1,13 @@
 ---
 layout: default
-title: "[WIP] Containers From Scratch: Building a Tiny Docker Runtime in Rust"
+title: "Containers From Scratch: Building a Tiny Docker Runtime in Rust"
 date: 2026-07-03
 permalink: /devlog/20260703-containers-from-scratch-rust-docker/
 ---
 
 {% include sidebar.html %}
 
-# [WIP] Containers From Scratch: Building a Tiny Docker Runtime in Rust
+# Containers From Scratch: Building a Tiny Docker Runtime in Rust
 
 The entire project discussed in this demo is linked below.
 
@@ -370,3 +370,224 @@ nix::unistd::chdir("/")
 ```
 
 This ensures the process starts from `/` inside the new root filesystem.
+
+**Executing The Command**
+
+After setting up the namespaces, hostname, and root filesystem, the container is ready to run the command passed to `dkr`.
+
+```rs
+let command = process::Command::new(&self.command[0])
+    .args(&self.command[1..])
+    .stdin(process::Stdio::inherit())
+    .stdout(process::Stdio::inherit())
+    .stderr(process::Stdio::inherit())
+    .spawn();
+```
+
+The first item in `self.command` is the executable, and everything after it is passed as arguments.
+
+For example:
+
+```sh
+sudo ./target/debug/dkr uname -mno
+```
+
+becomes roughly:
+
+```rs
+process::Command::new("uname")
+    .args(["-mno"])
+```
+
+The command is resolved after `chroot()`, so executables such as `/bin/sh` and `uname` come from the Alpine root filesystem rather than the host filesystem.
+
+As mentioned earlier, this `spawn()` also creates the first child after `CLONE_NEWPID` was set up. Therefore, the spawned command becomes PID `1` inside the new PID namespace.
+
+**Inheriting The Terminal**
+
+The container command inherits standard input, output, and error from `dkr`:
+
+```rs
+.stdin(process::Stdio::inherit())
+.stdout(process::Stdio::inherit())
+.stderr(process::Stdio::inherit())
+```
+
+This is why an interactive command such as the following works:
+
+```sh
+sudo ./target/debug/dkr /bin/sh
+```
+
+The shell reads input from the same terminal and writes its output back to it.
+
+There is no terminal emulator, daemon, socket, or attach mechanism here. The container command is simply connected directly to the terminal that started `dkr`.
+
+**Waiting For The Command To Finish**
+
+After spawning the command, the `dkr` child waits for it to exit:
+
+```rs
+match command {
+    Ok(mut command) => {
+        command.wait().expect("command wasn't running");
+
+        write_stdout(format!(
+            "INFO Child command has finished its execution!\n"
+        ));
+    }
+    Err(e) => {
+        write_stdout(format!(
+            "ERROR Failed to execute Child command: {}\n",
+            e
+        ));
+    }
+}
+```
+
+This gives us two levels of waiting:
+
+```text
+dkr parent
+    waits for
+dkr child
+    waits for
+container command
+```
+
+The outer parent keeps the main `dkr` process alive. The inner child keeps the container setup process alive until the requested command finishes.
+
+Once the command exits, the `Container` object is dropped.
+
+**Cleaning Up The Container Process**
+
+The `Container` struct implements `Drop`:
+
+```rs
+impl Drop for Container {
+    fn drop(&mut self) {
+        write_stdout(format!(
+            "INFO Container with pid {} has been dropped!\n",
+            self.pid
+        ));
+        unsafe { nix::libc::exit(0) };
+    }
+}
+```
+
+There is no persistent container object to delete here. The “container” is only a group of settings applied to a process: namespaces, a hostname, and a changed root filesystem.
+
+When the process exits, the kernel cleans up its namespaces after no processes are using them anymore.
+
+The Alpine files under `/alpine-root` remain on the host because they were created before running `dkr`. This project does not manage container images or remove root filesystems.
+
+**Why `write_stdout()` Is Used In The Child**
+
+The child uses this small helper for some of its output:
+
+```rs
+mod io {
+    // Unsafe to use `println!` (or `unwrap`) here. See Safety.
+    pub fn write_stdout(msg: String) {
+        nix::unistd::write(std::io::stdout(), msg.as_bytes()).ok();
+    }
+}
+```
+
+Calling `fork()` from a Rust program requires some care. The child receives a copy of the parent process's memory, including the state of userspace locks. Higher-level output functions may depend on those locks.
+
+The helper calls the lower-level [`write(2)`](https://man7.org/linux/man-pages/man2/write.2.html) operation through the `nix` crate. For this small project, it keeps the output path after `fork()` simple.
+
+This is also one reason a real container runtime generally needs more careful process management than this learning implementation.
+
+**Gist Of The Complete Flow**
+
+The complete flow of `dkr` is now:
+
+```text
+1. Read the command from the CLI.
+2. Fork the dkr process.
+3. Keep the parent waiting for the child.
+4. Create new UTS and PID namespaces in the child.
+5. Change the hostname to container.
+6. Change the root filesystem to /alpine-root.
+7. Spawn the requested command.
+8. Run that command as PID 1 in the new PID namespace.
+9. Connect the command to the current terminal.
+10. Wait for it to exit.
+```
+
+In code, the important Linux operations are:
+
+```text
+fork()
+  |
+  v
+unshare(CLONE_NEWUTS | CLONE_NEWPID)
+  |
+  v
+sethostname("container")
+  |
+  v
+chroot("/alpine-root")
+  |
+  v
+spawn(command)
+  |
+  v
+wait()
+```
+
+That is enough to produce the result shown at the beginning of this devlog:
+
+```sh
+msharran@ubuntu$ sudo ./target/debug/dkr sh
+# uname -mno
+container x86_64 Linux
+# cat /etc/os-release
+NAME="Alpine Linux"
+ID=alpine
+VERSION_ID=3.24.1
+...
+```
+
+The hostname comes from the UTS namespace. The isolated process tree comes from the PID namespace. The Alpine commands and files come from `chroot("/alpine-root")`. The Linux kernel still comes from the host.
+
+## What I Want To Remember
+
+A container is not one special Linux feature. It is a normal process with several Linux isolation and resource-control features applied around it.
+
+For this implementation, my mental model is:
+
+```text
+normal Linux process
+  |
+  +-- UTS namespace -> isolated hostname
+  |
+  +-- PID namespace -> isolated process tree
+  |
+  +-- chroot         -> different filesystem root
+  |
+  +-- inherited I/O -> interactive terminal
+  |
+  `-- Alpine rootfs  -> container userspace
+```
+
+Docker and other container runtimes build on the same Linux primitives, but they add the missing namespaces, cgroups, security controls, image management, networking, storage, and lifecycle handling.
+
+## Key Take Aways
+
+1. A container is still a process running on the host's Linux kernel.
+2. `fork()` creates the child process used to prepare the container environment.
+3. `unshare()` gives that process new namespace views.
+4. The UTS namespace allows the container to have its own hostname.
+5. The first child created after `CLONE_NEWPID` becomes PID `1` inside the new PID namespace.
+6. `chroot()` changes the filesystem root seen by the command.
+7. An Alpine root filesystem provides Alpine userspace, not an Alpine kernel.
+8. Inheriting standard I/O is enough to make a basic interactive shell work.
+9. Namespaces and `chroot()` alone do not make a secure container.
+10. A tiny implementation is enough to understand the basic shape of a container runtime.
+
+From here, the project can grow carefully: add a mount namespace and mount `/proc`, add network isolation, restrict resources using cgroups, introduce user namespaces, and handle signals and PID `1` responsibilities properly.
+
+However, I'm going to stop here.
