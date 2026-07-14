@@ -5,8 +5,6 @@ date: 2026-07-03
 permalink: /devlog/20260703-containers-from-scratch-rust-docker/
 ---
 
-{% include sidebar.html %}
-
 # Containers From Scratch: Building a Tiny Docker Runtime in Rust
 
 The entire project discussed in this demo is linked below.

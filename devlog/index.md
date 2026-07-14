@@ -4,8 +4,6 @@ title: Devlog
 permalink: /devlog/
 ---
 
-{% include sidebar.html %}
-
 <section class="devlog" aria-labelledby="devlog-title">
   <h2 id="devlog-title">Devlog</h2>
 

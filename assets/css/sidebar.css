@@ -5,11 +5,21 @@
   display: flex;
   flex-direction: column;
   gap: clamp(4.5rem, 11vh, 7.5rem);
-  left: max(var(--page-pad, 2rem), calc((100vw - 1240px) / 2 + var(--page-pad, 2rem)));
-  position: fixed;
-  top: clamp(3rem, 14vh, 8.75rem);
+  position: sticky;
+  top: clamp(3rem, 10vh, 6.5rem);
   width: 12rem;
   z-index: 10;
+}
+
+.site-shell {
+  align-items: start;
+  display: grid;
+  gap: clamp(2.5rem, 5vw, 5rem);
+  grid-template-columns: 12rem minmax(0, 1fr);
+}
+
+.site-main {
+  min-width: 0;
 }
 
 .site-sidebar__brand,
@@ -102,21 +112,12 @@
 }
 
 @media (min-width: 761px) {
-  body:has(.site-sidebar) .site-header {
+  .site-page .site-header {
     display: none;
   }
 
-  body:has(.site-sidebar) .page-content > .wrapper {
-    padding-left: clamp(18rem, 28vw, 23.5rem);
-  }
-
-  body:has(.site-sidebar) .page-content {
+  .site-page .page-content {
     padding-top: clamp(3.25rem, 10vh, 6.5rem);
-  }
-
-  body.profile-page .resume {
-    margin-left: max(20rem, calc((100vw - 1240px) / 2 + 18rem));
-    margin-right: auto;
   }
 }
 
@@ -132,9 +133,18 @@
     justify-content: space-between;
     left: 0;
     padding: 0 1rem;
+    position: fixed;
     right: 0;
     top: 0;
     width: auto;
+  }
+
+  .site-shell {
+    display: block;
+  }
+
+  .site-main a {
+    overflow-wrap: anywhere;
   }
 
   .site-sidebar__mark {
@@ -157,11 +167,11 @@
     font-size: 0.88rem;
   }
 
-  body:has(.site-sidebar) .site-header {
+  .site-page .site-header {
     display: none;
   }
 
-  body:has(.site-sidebar) .page-content {
+  .site-page .page-content {
     padding-top: 6.8rem;
   }
 

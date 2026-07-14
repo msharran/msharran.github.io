@@ -2,8 +2,6 @@
 layout: default
 ---
 
-{% include sidebar.html %}
-
 <div class="tabs">
   <section class="about-panel" aria-labelledby="site-title">
     <section class="hero" aria-labelledby="site-title">
