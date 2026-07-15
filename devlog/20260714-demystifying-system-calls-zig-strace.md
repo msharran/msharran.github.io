@@ -1,11 +1,11 @@
 ---
 layout: default
-title: "System Calls From Scratch: Building a Tiny strace in Zig"
+title: "Demystifying System Calls: Building a Tiny strace in Zig"
 date: 2026-07-14
-permalink: /devlog/20260714-system-calls-from-scratch-zig-strace/
+permalink: /devlog/20260714-demystifying-system-calls-zig-strace/
 ---
 
-# System Calls From Scratch: Building a Tiny strace in Zig
+# Demystifying System Calls: Building a Tiny strace in Zig
 
 The entire project discussed in this demo is linked below.
 
