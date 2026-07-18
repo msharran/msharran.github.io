@@ -45,6 +45,11 @@
   --code-edge: rgba(157, 169, 160, 0.15);
   --code-text: #d9e1dc;
   --code-muted: #9da9a0;
+  --table-bg: rgba(30, 35, 38, 0.74);
+  --table-head: rgba(55, 65, 69, 0.84);
+  --table-stripe: rgba(46, 56, 60, 0.58);
+  --table-hover: rgba(131, 192, 146, 0.09);
+  --table-edge: rgba(157, 169, 160, 0.2);
   --grid-step: clamp(9.75rem, 23vw, 28.75rem);
   --page-pad: clamp(1.75rem, 5.4vw, 4.85rem);
 }
@@ -258,6 +263,70 @@ blockquote {
   letter-spacing: 0;
   margin: 1.7rem 0 1.85rem;
   padding: 0.1rem 0 0.1rem 1.25rem;
+}
+
+.page-content table {
+  background: var(--table-bg);
+  border: 1px solid var(--table-edge);
+  border-collapse: separate;
+  border-radius: 0.42rem;
+  border-spacing: 0;
+  color: var(--text);
+  font-size: 0.94rem;
+  line-height: 1.45;
+  margin: 1.65rem 0 1.95rem;
+  max-width: 900px;
+  overflow: hidden;
+  width: 100%;
+}
+
+.page-content table th,
+.page-content table td {
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid var(--table-edge);
+  border-right: 1px solid var(--table-edge);
+  color: var(--text);
+  padding: 0.78rem 0.95rem;
+  text-align: left;
+  vertical-align: top;
+}
+
+.page-content table th {
+  background: var(--table-head);
+  color: var(--ink);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.page-content table tbody tr {
+  background: transparent;
+}
+
+.page-content table tbody tr:nth-child(even) {
+  background: var(--table-stripe);
+}
+
+.page-content table tbody tr:hover {
+  background: var(--table-hover);
+}
+
+.page-content table th:last-child,
+.page-content table td:last-child {
+  border-right: 0;
+}
+
+.page-content table tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+.page-content table caption {
+  color: var(--muted);
+  font-size: 0.82rem;
+  margin-bottom: 0.65rem;
+  text-align: left;
 }
 
 .social-links {
@@ -592,6 +661,15 @@ a:hover {
   .page-content div.highlighter-rouge pre {
     font-size: 0.86rem;
     padding: 1.05rem 1.1rem;
+  }
+
+  .page-content table {
+    font-size: 0.88rem;
+  }
+
+  .page-content table th,
+  .page-content table td {
+    padding: 0.7rem 0.72rem;
   }
 }
 @media (max-width: 520px) {
