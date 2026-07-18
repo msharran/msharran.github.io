@@ -9,6 +9,10 @@ permalink: /devlog/
 
   <ol class="devlog-list">
     <li class="devlog-item">
+      <time class="devlog-date" datetime="2026-07-18">July 18, 2026</time>
+      <a class="devlog-link" href="{{ '/devlog/20260718-building-redis-server-zig-part-1-resp/' | relative_url }}">Building a Redis Server in Zig, Part 1: Parsing RESP</a>
+    </li>
+    <li class="devlog-item">
       <time class="devlog-date" datetime="2026-07-14">July 14, 2026</time>
       <a class="devlog-link" href="{{ '/devlog/20260714-demystifying-system-calls-zig-strace/' | relative_url }}">Demystifying System Calls: Building a Tiny strace in Zig</a>
     </li>
