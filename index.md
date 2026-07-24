@@ -5,11 +5,11 @@ layout: default
 <div class="tabs">
   <section class="about-panel" aria-labelledby="site-title">
     <section class="hero" aria-labelledby="site-title">
-      <p class="eyebrow">developer · platform engineer · systems tinkerer</p>
+      <p class="eyebrow">staff site reliability engineer · platform · productivity · security</p>
       <h1 id="site-title">{ Sharran M }</h1>
       <p class="lede">
-        I keep a devlog of what I develop, learn, explore, and work through in my
-        personal time.
+        I keep a devlog of what I build and learn — mostly around agent development
+        environments and site reliability.
       </p>
     </section>
 
@@ -51,54 +51,16 @@ layout: default
     <section class="who-i-am" aria-labelledby="who-title">
       <h2 id="who-title">Who I am</h2>
       <p>
-        I’m a software engineer based in Bangalore, India — currently working on
-        infrastructure tooling domain.
+        I’m a Staff Site Reliability Engineer based in Bangalore, India.
       </p>
       <p>
-        At work, I develop systems and tooling for platform engineering problems in
-        developer experience and software delivery charter.
+        My core domains are platform engineering, developer productivity, and site
+        reliability — with growing focus on security, including perimeter security.
       </p>
       <p>
-        Personally, I’m also curious about systems software and network programming.
-        So, In my free time, I pick and solve challenges from
-        <a href="https://protohackers.com">protohackers.com</a> or
-        <a href="https://codingchallenges.fyi">codingchallenges.fyi</a>. I don’t
-        finish it end to end because my goal is to learn something substantial
-        before it gets boring.
+        In my own time I build and experiment with agent development environments.
+        This site is where I log what I learn along the way.
       </p>
-      <p>
-        All my pet projects are spread across in my GitHub account. I mostly
-        program in Go and Zig, while also occasionally program in Rust and C (to
-        satisfy my curiosity, not a pro here). The well structured ones are linked
-        at the end of this section.
-      </p>
-      <p>
-        Lately I’m very interested in eBPF and trying to implement a
-        <code>syscall</code> tracer using <code>libebpfgo</code> package. I will
-        reflect about it later.
-      </p>
-      <p>
-        I also love to tweak my development setup a lot (my current editor and
-        harness of choice are <code>zed</code> and <code>pi</code> respectively).
-        Most of my <code>.dotfiles</code> (few configs are redacted to my private
-        dotfiles repo) and my custom <code>pi</code> extensions are pushed to the
-        following repositories.
-      </p>
-      <ul>
-        <li><a href="https://github.com/msharran/.dotfiles">https://github.com/msharran/.dotfiles</a></li>
-        <li><a href="https://github.com/msharran/pi-amplike-modes">https://github.com/msharran/pi-amplike-modes</a></li>
-        <li><a href="https://github.com/msharran/pragmatic-pi-extensions">https://github.com/msharran/pragmatic-pi-extensions</a></li>
-      </ul>
-      <p>
-        This site will be my devlog. I will reflect on the above areas of interest
-        in concise log entries — in my own language, unstructured and unfiltered,
-        acting as a brain dump of what I have learnt.
-      </p>
-      <ul class="project-links" aria-label="Structured project links">
-        <li><a href="https://github.com/msharran/codingchallenges.fyi">https://github.com/msharran/codingchallenges.fyi</a></li>
-        <li><a href="https://github.com/msharran/protohackers.com">https://github.com/msharran/protohackers.com</a></li>
-        <li><a href="https://github.com/msharran/wasm-poc">https://github.com/msharran/wasm-poc</a></li>
-      </ul>
     </section>
   </section>
 </div>
