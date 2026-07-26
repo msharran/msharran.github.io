@@ -10,6 +10,10 @@ permalink: /devlog/
   <ol class="devlog-list">
     <li class="devlog-item">
       <time class="devlog-date" datetime="2026-07-26">July 26, 2026</time>
+      <a class="devlog-link" href="{{ '/devlog/20260726-shelf-mac-cloud-agents-voice-to-devlog/' | relative_url }}">Shelf Mac, Cloud Agents, Voice to Devlog</a>
+    </li>
+    <li class="devlog-item">
+      <time class="devlog-date" datetime="2026-07-26">July 26, 2026</time>
       <a class="devlog-link" href="{{ '/devlog/20260726-giving-agent-a-separate-chrome/' | relative_url }}">Giving Agent a Separate Chrome</a>
     </li>
     <li class="devlog-item">
