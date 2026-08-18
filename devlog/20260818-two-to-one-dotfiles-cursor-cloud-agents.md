@@ -43,8 +43,6 @@ Public `.config/` subtrees did not overlap the private ones, so the first pass w
 
 The public Makefile became a tombstone. `make install` / `stow-link` / `dryrun` / `ls` now print instructions and exit 1. `make clean` still exists, and only removes `$HOME` symlinks that still point at `~/.dotfiles`, never at the private clone.
 
-The first PR description was wrong in ways that only show up if you live in the tree. The rest of the day was review → change the design → push. About thirty review comments, plus chat on the agent. The copy was not the product.
-
 ## Design that survived contact with the machine
 
 **`make install` is cheap.** Day-to-day refresh should not brew the world.
