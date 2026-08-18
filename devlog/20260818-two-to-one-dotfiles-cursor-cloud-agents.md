@@ -103,7 +103,3 @@ Redacted chat: [Absorb transcript](/notes/20260818-absorb-public-dotfiles-transc
 `make bootstrap` only if this is a new Mac.
 
 The public GitHub repo is archived and private. Git history from the old public clone still exists there; the live tree is private only.
-
-## What's next
-
-- Leave absorb invoke-only. If it is still sitting in a hook next month, the design did not stick
