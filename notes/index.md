@@ -6,6 +6,12 @@ permalink: /notes/
 
 <section class="devlog" aria-labelledby="notes-title">
   <h2 id="notes-title">Notes</h2>
+  <p>
+    <strong>TL;DR.</strong> Small writings, usually linked from a
+    <a href="{{ '/devlog/' | relative_url }}">devlog</a>. Sometimes a standalone
+    note I want a URL for. Not always meant to be read as a post — an agent
+    skill or other artifact counts.
+  </p>
 
   <ol class="devlog-list">
     <li class="devlog-item">
