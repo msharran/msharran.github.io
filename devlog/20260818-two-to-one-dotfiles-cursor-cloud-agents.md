@@ -54,7 +54,7 @@ make install     # git crypt unlock, stow, agent-guidance, SSH perms
 
 A review pass also caught a fake brew formula (`glowin` vs `glow`), `brew install a b c || true` (one miss skipped the rest), and `~/projects` (this machine keeps clones under `~/root/`, not `~/projects`).
 
-**Absorb is a skill you run once**, not a hook on every rebase. The first version wired it into [`gsync`](/devlog/gsync/) (an agent skill: stash if needed, `git pull --rebase`, walk conflicts, ask before push), `gpr` (a fish abbreviation for `git pull --rebase`), fish startup, and git hooks. That would have rewritten `gpr` into a wrapper, for a one-time migration. Reverted to invoke-only: I type `/absorb-public-dotfiles`, and the skill calls the script.
+**Absorb is a skill you run once**, not a hook on every rebase. The first version wired it into [`gsync`](/notes/gsync/) (an agent skill: stash if needed, `git pull --rebase`, walk conflicts, ask before push), `gpr` (a fish abbreviation for `git pull --rebase`), fish startup, and git hooks. That would have rewritten `gpr` into a wrapper, for a one-time migration. Reverted to invoke-only: I type `/absorb-public-dotfiles`, and the skill calls the script.
 
 ```text
 /absorb-public-dotfiles
@@ -106,7 +106,7 @@ Absorb got a second fixture: public owned `.tmux.conf` and whole `~/sbin` (with 
 
 After the cloud PRs, I invoked `/absorb-public-dotfiles` once on the machine that still had `~/.dotfiles` stowed. The skill called the script against live `$HOME`. Exit 0. Public links unstowed, private restowed, clone parked at `/tmp/dotfiles-public-$USER-20260818184055`.
 
-Redacted chat: [Absorb transcript](/devlog/20260818-absorb-public-dotfiles-transcript/).
+Redacted chat: [Absorb transcript](/notes/20260818-absorb-public-dotfiles-transcript/).
 
 `make bootstrap` only if this is a new Mac.
 

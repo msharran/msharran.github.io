@@ -15,6 +15,10 @@
        href="{{ '/devlog/' | relative_url }}"{% if current_path contains '/devlog/' %} aria-current="page"{% endif %}>
       <span class="site-sidebar__dot" aria-hidden="true"></span>Devlog
     </a>
+    <a class="site-sidebar__link{% if current_path contains '/notes/' %} is-active{% endif %}"
+       href="{{ '/notes/' | relative_url }}"{% if current_path contains '/notes/' %} aria-current="page"{% endif %}>
+      <span class="site-sidebar__dot" aria-hidden="true"></span>Notes
+    </a>
   </nav>
   {% endunless %}
 </aside>

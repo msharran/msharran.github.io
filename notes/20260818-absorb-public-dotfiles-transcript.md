@@ -2,7 +2,7 @@
 layout: default
 title: "Absorb transcript (redacted)"
 date: 2026-08-18
-permalink: /devlog/20260818-absorb-public-dotfiles-transcript/
+permalink: /notes/20260818-absorb-public-dotfiles-transcript/
 description: "Redacted Cursor chat from the absorb-public-dotfiles run on 18 Aug 2026."
 ---
 
