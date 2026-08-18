@@ -54,7 +54,7 @@ make install     # git crypt unlock, stow, agent-guidance, SSH perms
 
 A review pass also caught a fake brew formula (`glowin` vs `glow`), `brew install a b c || true` (one miss skipped the rest), and `~/projects` (this machine keeps clones under `~/root/`, not `~/projects`).
 
-**Absorb is a skill you run once**, not a hook on every rebase. The first version wired it into `gsync`, `gpr`, fish startup, and git hooks. That would have rewritten `gpr` (a `git pull --rebase` abbr) into a wrapper, for a one-time migration. Reverted to invoke-only:
+**Absorb is a skill you run once**, not a hook on every rebase. The first version wired it into [`gsync`](/devlog/gsync/) (an agent skill: stash if needed, `git pull --rebase`, walk conflicts, ask before push), `gpr` (a fish abbreviation for `git pull --rebase`), fish startup, and git hooks. That would have rewritten `gpr` into a wrapper, for a one-time migration. Reverted to invoke-only:
 
 ```bash
 ~/.dotfiles-private/.claude/skills/absorb-public-dotfiles/absorb-public-dotfiles.sh
