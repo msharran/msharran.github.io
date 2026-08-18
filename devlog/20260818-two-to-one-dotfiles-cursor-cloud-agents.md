@@ -63,13 +63,7 @@ A review pass also caught a fake brew formula (`glowin` vs `glow`), `brew instal
 ~/.dotfiles-private/.claude/skills/absorb-public-dotfiles/absorb-public-dotfiles.sh
 ```
 
-**Park, don't delete.** Other machines, muscle memory, "what if I still needed a file." Absorb and the public README now `mv ~/.dotfiles /tmp/dotfiles-public-$USER-$timestamp`. A public clone with uncommitted changes is unstowed but not moved. If you are standing inside the clone, the script `cd`s home first.
-
-**Unused tools go to `archive/`** (Stow-ignored), instead of silently remaining as `~/sbin` leftovers. What is still stowed: `sbin/zed-sessioniser` only. Kitty/tmux sessioniser bindings went with the archive.
-
-**Stow must name `$HOME`.** GNU Stow's default target is the parent of the package directory, which is only `$HOME` when the clone lives at `~/.dotfiles-private`. An off-home checkout writes into the parent. Fix: `stow -v -t "$(HOME)"`.
-
-**Private dryrun must not see public links.** Fail-closed dryrun against the live home conflicts with public `.tmux.conf` / `~/sbin` still occupying those paths, so absorb aborted *before* unstow. On the Mac that still had the public clone stowed, that would have blocked the whole migration. Probe an empty `$HOME`, then unstow (including directory-level `sbin` / `.config` symlinks), then stow private.
+**TL;DR.** Park the old clone under `/tmp` instead of deleting it. Unused `sbin` helpers go to `archive/` and are not stowed. Stow always targets `$HOME`. Absorb dry-runs into an empty home first, then unstows public links, then stows private.
 
 ## I could not test macOS `make install` on this pod
 
