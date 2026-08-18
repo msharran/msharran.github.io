@@ -1,12 +1,12 @@
 ---
 layout: default
-title: "gsync"
+title: "Skill: gsync"
 date: 2026-08-18
 permalink: /notes/gsync/
 description: "Agent skill: stash if needed, git pull --rebase, walk conflicts, then ask before push."
 ---
 
-# gsync
+# Skill: gsync
 
 Agent skill. Stash if needed, `git pull --rebase`, walk conflicts, then ask before push.
 
