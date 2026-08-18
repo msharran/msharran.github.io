@@ -14,7 +14,7 @@ I had two GNU Stow trees. One public, one private. The split was supposed to kee
 
 I did not do the merge on the Mac. That machine still had `~/.dotfiles` stowed. I used the [pure-cloud path](/devlog/20260726-shelf-mac-cloud-agents-voice-to-devlog/): a Cursor cloud agent with both repos checked out, steered over chat, on 18 Aug 2026.
 
-The public half is now a tombstone: [msharran/.dotfiles#2](https://github.com/msharran/.dotfiles/pull/2). Everything lives in the private tree.
+The public GitHub repo is archived and private now. Everything lives in the private tree.
 
 ## The split that existed
 
@@ -113,9 +113,8 @@ Redacted chat: [Absorb transcript](/devlog/20260818-absorb-public-dotfiles-trans
 
 `make bootstrap` only if this is a new Mac.
 
-Merging the public PR removes configs from `master`, but **git history still has them**. Archive, delete, or make that GitHub repo private. File history for the moved configs is the last `master` commit before sunset, plus the copy in private.
+The public GitHub repo is archived and private. Git history from the old public clone still exists there; the live tree is private only.
 
 ## What's next
 
-- Archive or privatize `msharran/.dotfiles` so the old configs are not still public in history
 - Leave absorb invoke-only. If it is still sitting in a hook next month, the design did not stick
