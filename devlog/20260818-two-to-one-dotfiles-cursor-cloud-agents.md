@@ -94,8 +94,6 @@ That is how the Stow parent-directory bug showed up: first `stow -v .` from `/tm
 
 After that, install passed: `.tmux.conf`, `.config` (nvim/kitty/fish/…), `sbin` → private, LaunchAgents present, `archive/` **not** stowed. The live repo clone stayed clean because the test used a copy.
 
-Absorb got a second fixture: public owned `.tmux.conf` and whole `~/sbin` (with leftover `ktm`). Exit 0. Public parked under `/tmp/dotfiles-public-$USER-…`. `~/sbin` retargeted at private; `ktm` gone; `archive/` still not stowed.
-
 ## Then I ran absorb on the Mac
 
 After the cloud PRs, I invoked `/absorb-public-dotfiles` once on the machine that still had `~/.dotfiles` stowed. The skill called the script against live `$HOME`. Exit 0. Public links unstowed, private restowed, clone parked at `/tmp/dotfiles-public-$USER-20260818184055`.
