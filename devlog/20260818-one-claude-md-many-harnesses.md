@@ -34,9 +34,9 @@ Each markdown file is one line:
 read @~/.claude/CLAUDE.md for user rules
 ```
 
-Cursor is the extra. `.cursor/rules/agents.mdc` gets `alwaysApply: true` frontmatter, then the same import line. That extra lives in the Makefile `printf`, not in a hand-edited copy of the file.
+Today the generator is dumb: `rm` + `printf >` replaces those files on every `make link-agent-guidance`. Do not put custom text in them. Shared rules live in `CLAUDE.md`.
 
-Those pointer files are generated. `rm` + `printf >` replaces them on every `make link-agent-guidance`. Do not put custom text in `AGENTS.md`. Put shared rules in `CLAUDE.md`. Put harness-specific lines in the recipe.
+The state I want is templatized generation (Jinja, or something like it) so a harness can have extra lines without hand-editing the output. Cursor already needs `alwaysApply: true` frontmatter on `.cursor/rules/agents.mdc`. That is still a second `printf` in the recipe, not a template. Later.
 
 Most of those paths Stow into `$HOME`. Codex and Cursor get an extra `ln -sfn` because those home dirs already exist as real directories.
 
