@@ -90,7 +90,7 @@ make dryrun && make install
 
 `git crypt unlock || true` no-ops as designed. `make bootstrap` (brew) was not run.
 
-That is how the Stow parent-directory bug showed up: first `stow -v .` from `/tmp/dotfiles-private-test` linked into **`/tmp`**, not `$HOME`. Those stray links were unstowed immediately, then `-t "$(HOME)"` landed.
+That is how the Stow parent-directory bug showed up. `stow -v .` from an off-home checkout at `/tmp/dotfiles-private-test` — not `$HOME/.dotfiles-private` — linked into **`/tmp`**, not `$HOME`. Those stray links were unstowed immediately, then `-t "$(HOME)"` landed.
 
 After that, install passed: `.tmux.conf`, `.config` (nvim/kitty/fish/…), `sbin` → private, LaunchAgents present, `archive/` **not** stowed. The live repo clone stayed clean because the test used a copy.
 
