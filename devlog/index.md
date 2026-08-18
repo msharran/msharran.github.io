@@ -9,6 +9,14 @@ permalink: /devlog/
 
   <ol class="devlog-list">
     <li class="devlog-item">
+      <time class="devlog-date" datetime="2026-08-18">August 18, 2026</time>
+      <a class="devlog-link" href="{{ '/devlog/20260818-one-claude-md-many-harnesses/' | relative_url }}">One CLAUDE.md, Many Harnesses</a>
+    </li>
+    <li class="devlog-item">
+      <time class="devlog-date" datetime="2026-08-18">August 18, 2026</time>
+      <a class="devlog-link" href="{{ '/devlog/20260818-two-to-one-dotfiles-cursor-cloud-agents/' | relative_url }}">2 → 1 Dotfiles, Done with Cursor Cloud Agents</a>
+    </li>
+    <li class="devlog-item">
       <time class="devlog-date" datetime="2026-07-26">July 26, 2026</time>
       <a class="devlog-link" href="{{ '/devlog/20260726-shelf-mac-cloud-agents-voice-to-devlog/' | relative_url }}">Shelf Mac, Cloud Agents, Voice to Devlog</a>
     </li>
