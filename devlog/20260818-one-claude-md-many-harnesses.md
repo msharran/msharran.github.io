@@ -57,6 +57,50 @@ Cursor is the extra. `.cursor/rules/agents.mdc` gets frontmatter so the rule alw
 
 Most of those paths Stow into `$HOME`. Codex and Cursor get an extra `ln -sfn` because those home dirs already exist as real directories.
 
+## The target
+
+Copy this into a Makefile next to `.claude/CLAUDE.md`. `make link-agent-guidance` writes the pointers. Hook it from `stow-link` if Stow owns the rest of the tree.
+
+```makefile
+AGENT_GUIDANCE_IMPORT := read @~/.claude/CLAUDE.md for user rules
+AGENT_GUIDANCE_MD_FILES := \
+	.config/zed/AGENTS.md \
+	.config/amp/AGENT.md \
+	.pi/agent/AGENTS.md \
+	.codex/AGENTS.md \
+	.gemini/GEMINI.md \
+	.agents/AGENTS.md
+AGENT_GUIDANCE_HOME_LINKS := \
+	$(HOME)/.pi/agent/AGENTS.md \
+	$(HOME)/.config/zed/AGENTS.md \
+	$(HOME)/.config/amp/AGENT.md \
+	$(HOME)/.codex/AGENTS.md \
+	$(HOME)/.gemini/GEMINI.md \
+	$(HOME)/.agents/AGENTS.md \
+	$(HOME)/.cursor/rules/agents.mdc
+
+.PHONY: link-agent-guidance
+link-agent-guidance:
+	@test -e .claude/CLAUDE.md || { echo "missing .claude/CLAUDE.md"; exit 1; }; \
+	mkdir -p .codex .pi/agent .agents .cursor/rules "$(HOME)/.codex"; \
+	for f in $(AGENT_GUIDANCE_MD_FILES); do \
+		mkdir -p "$$(dirname "$$f")"; \
+		rm -f "$$f"; \
+		printf '%s\n' "$(AGENT_GUIDANCE_IMPORT)" > "$$f"; \
+	done; \
+	printf '%s\n' "---" "description: User rules imported from CLAUDE.md" "alwaysApply: true" "---" "" "$(AGENT_GUIDANCE_IMPORT)" > .cursor/rules/agents.mdc; \
+	if [ -L "$(HOME)/.cursor/rules" ]; then rm -f "$(HOME)/.cursor/rules"; fi; \
+	mkdir -p "$(HOME)/.cursor/rules"; \
+	ln -sfn "$(CURDIR)/.codex/AGENTS.md" "$(HOME)/.codex/AGENTS.md"; \
+	ln -sfn "$(CURDIR)/.cursor/rules/agents.mdc" "$(HOME)/.cursor/rules/agents.mdc"; \
+	rm -f "$(HOME)/.cursor/AGENTS.md"; \
+	for t in $(AGENT_GUIDANCE_HOME_LINKS); do \
+		echo "LINK: $$t => $$(readlink "$$t" 2>/dev/null || { [ -e "$$t" ] && echo file || echo missing; })"; \
+	done
+```
+
+Drop a path from `AGENT_GUIDANCE_MD_FILES` if you do not use that harness. Add extra `printf` lines in the recipe when a tool needs more than the import.
+
 ## Why this is KISS
 
 - One file to edit: `CLAUDE.md`
