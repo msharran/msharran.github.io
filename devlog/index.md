@@ -9,6 +9,10 @@ permalink: /devlog/
 
   <ol class="devlog-list">
     <li class="devlog-item">
+      <time class="devlog-date" datetime="2026-09-25">September 25, 2026</time>
+      <a class="devlog-link" href="{{ '/devlog/20260925-cursor-automation-email-triage/' | relative_url }}">Cursor Automation for Email Triage</a>
+    </li>
+    <li class="devlog-item">
       <time class="devlog-date" datetime="2026-08-18">August 18, 2026</time>
       <a class="devlog-link" href="{{ '/devlog/20260818-one-claude-md-many-harnesses/' | relative_url }}">One CLAUDE.md, Many Harnesses</a>
     </li>
