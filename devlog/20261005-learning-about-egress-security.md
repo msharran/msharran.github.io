@@ -1,12 +1,14 @@
 ---
 layout: default
-title: "Learning About Egress Security"
+title: "Learning About Egress Security — Part 1"
 date: 2026-10-05
 permalink: /devlog/20261005-learning-about-egress-security/
-description: "Initial notes on monitoring and securing outbound traffic."
+description: "Learning egress security through business requirements and system design."
 ---
 
-# Learning About Egress Security
+# Learning About Egress Security — Part 1
+
+> This devlog documents my learning journey on egress security while working on a business requirement. I am exploring the problem through system design, with the technical depth of an architect designing the system: understanding the requirements, the controls we need, and the tradeoffs between approaches.
 
 ## What is egress security?
 
@@ -28,7 +30,7 @@ The same is true for Trojans and other malware. Egress security does not remove 
 
 ## DNS exfiltration is out of scope for now
 
-For this draft, I am focusing on outbound connections to internet endpoints, including connections made after DNS resolution. DNS exfiltration is out of scope for now because it needs additional visibility and controls.
+In this part, I am focusing on outbound connections to internet endpoints, including connections made after DNS resolution. DNS exfiltration is out of scope for now because it needs additional visibility and controls.
 
 Data can be encoded into DNS query names and sent through permitted DNS traffic. Filtering the connections made after resolution would not catch that. Controlling resolver access, inspecting DNS queries, and handling encrypted DNS add complexity that I will leave for a separate discussion.
 
@@ -42,10 +44,12 @@ An endpoint could mean an IP address and port, a domain name, or an application 
 
 ## What are the ways we can implement this?
 
-There are a few places where we can apply these controls:
+Several solutions can help us implement egress monitoring and filtering:
 
-- **Network rules:** Security groups and network firewalls can restrict outbound traffic by IP address, port, and protocol. These are useful for basic restrictions, but IP-based rules become harder to maintain when external services change addresses or share infrastructure.
-- **An egress proxy or gateway:** We can route outbound requests through a central point that applies policy and records connections. An HTTP proxy can support domain-based rules; filtering full HTTPS URLs generally requires TLS inspection because the path is encrypted. Direct outbound access must be restricted so workloads cannot bypass the proxy.
-- **Workload-level controls:** Host firewalls or Kubernetes network policies can limit traffic close to the workload. Standard Kubernetes network policies mainly use IP and port rules; some networking implementations add domain-based policies and visibility into which workload made a connection.
+1. **Transparent proxy:** Intercepts outbound traffic without requiring each application to configure a proxy. It can apply destination policies and log requests, depending on the protocols and inspection it supports.
+2. **Edge internet gateway:** Provides a central exit point for internet traffic where we can attach monitoring and policy enforcement. A basic internet or NAT gateway provides connectivity; filtering requires additional controls.
+3. **Network firewall:** Inspects traffic on the outbound path and applies allow or block rules. Depending on its capabilities, rules can use IP addresses, ports, protocols, or domain names.
+4. **Explicit forward proxy or secure web gateway:** Applications send web traffic through a configured proxy that enforces destination policies and records requests.
+5. **Workload egress gateway and network policies:** Apply controls close to the workload, such as in a Kubernetes cluster, and route outbound traffic through a shared enforcement point.
 
-These approaches can be combined. The choice depends on whether we need IP, domain, or URL filtering, which protocols our workloads use, and how we will maintain the endpoint lists. I will explore the implementation details next.
+These approaches can be combined. I will dive deeper into their system design and implementation tradeoffs in future devlogs.
