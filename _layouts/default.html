@@ -7,7 +7,7 @@
       {%- include sidebar.html -%}
       <main id="main" class="page-content{% if page.date %} reading-page{% endif %}">
         {% if page.date %}{% assign archive_path = '/devlog/' %}{% assign archive_name = 'devlogs' %}{% if page.url contains '/notes/' %}{% assign archive_path = '/notes/' %}{% assign archive_name = 'notes' %}{% endif %}<div class="article-meta"><a href="{{ archive_path | relative_url }}">← All {{ archive_name }}</a><time datetime="{{ page.date | date: '%Y-%m-%d' }}">{{ page.date | date: '%d %b %Y' }}</time></div>{% endif %}
-        {{ content }}
+        {{ content | replace: '<table>', '<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>' | replace: '</table>', '</table></div>' }}
         {% if page.date %}<div class="article-end"><span>End of entry</span><a href="{{ archive_path | relative_url }}">Explore {{ archive_name }} ↗</a></div>{% endif %}
       </main>
       {%- include footer.html -%}

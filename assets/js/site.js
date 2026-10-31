@@ -15,13 +15,3 @@ if (toggle) {
     update();
   });
 }
-// Keep wide technical tables inside the reading column, including on mobile.
-document.querySelectorAll('main table').forEach(table => {
-  const wrapper = document.createElement('div');
-  wrapper.className = 'table-scroll';
-  wrapper.tabIndex = 0;
-  wrapper.setAttribute('role', 'region');
-  wrapper.setAttribute('aria-label', 'Scrollable table');
-  table.before(wrapper);
-  wrapper.append(table);
-});
