@@ -11,3 +11,10 @@ minima:
 
 header_pages: []
 show_excerpts: false
+
+exclude:
+  - AGENTS.md
+  - docs
+  - Dockerfile
+  - Makefile
+  - README.md
