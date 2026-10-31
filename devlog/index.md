@@ -5,7 +5,10 @@ permalink: /devlog/
 ---
 
 <section class="devlog" aria-labelledby="devlog-title">
-  <h2 id="devlog-title">Devlog</h2>
+  <p class="eyebrow">01 / The working notebook</p>
+  <h1 id="devlog-title">Devlog<span class="hero-period">.</span></h1>
+  <p class="index-intro">Systems built. Ideas tested. Lessons kept.<br>Notes from the workbench, in reverse chronological order.</p>
+  <div class="index-label"><span>2026 / 10 entries</span><span>Latest first ↓</span></div>
 
   <ol class="devlog-list">
     <li class="devlog-item">

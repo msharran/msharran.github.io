@@ -1,25 +1,16 @@
 <!DOCTYPE html>
-<html lang="{{ page.lang | default: site.lang | default: "en" }}">
-
+<html lang="{{ page.lang | default: site.lang | default: 'en' }}" id="top">
   {%- include head.html -%}
-
-  <body class="site-page">
-
-    {%- include header.html -%}
-
-    <main class="page-content" aria-label="Content">
-      <div class="wrapper">
-        <div class="site-shell">
-          {%- include sidebar.html -%}
-          <div class="site-main">
-            {{ content }}
-          </div>
-        </div>
-      </div>
-    </main>
-
-    {%- include footer.html -%}
-
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <div class="site-frame">
+      {%- include sidebar.html -%}
+      <main id="main" class="page-content{% if page.date %} reading-page{% endif %}">
+        {% if page.date %}{% assign archive_path = '/devlog/' %}{% assign archive_name = 'devlogs' %}{% if page.url contains '/notes/' %}{% assign archive_path = '/notes/' %}{% assign archive_name = 'notes' %}{% endif %}<div class="article-meta"><a href="{{ archive_path | relative_url }}">← All {{ archive_name }}</a><time datetime="{{ page.date | date: '%Y-%m-%d' }}">{{ page.date | date: '%d %b %Y' }}</time></div>{% endif %}
+        {{ content }}
+        {% if page.date %}<div class="article-end"><span>End of entry</span><a href="{{ archive_path | relative_url }}">Explore {{ archive_name }} ↗</a></div>{% endif %}
+      </main>
+      {%- include footer.html -%}
+    </div>
   </body>
-
 </html>

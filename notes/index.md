@@ -5,13 +5,10 @@ permalink: /notes/
 ---
 
 <section class="devlog" aria-labelledby="notes-title">
-  <h2 id="notes-title">Notes</h2>
-  <p>
-    <strong>TL;DR.</strong> Small writings, usually linked from a
-    <a href="{{ '/devlog/' | relative_url }}">devlog</a>. Sometimes a standalone
-    note I want a URL for. Not always meant to be read as a post — an agent
-    skill or other artifact counts.
-  </p>
+  <p class="eyebrow">02 / Reference material</p>
+  <h1 id="notes-title">Notes<span class="hero-period">.</span></h1>
+  <p class="index-intro">Small writings, useful artifacts, and things worth a URL.<br>Companions to the <a href="{{ '/devlog/' | relative_url }}">devlog</a>, or standalone notes from the work.</p>
+  <div class="index-label"><span>2026 / 02 notes</span><span>Latest first ↓</span></div>
 
   <ol class="devlog-list">
     <li class="devlog-item">

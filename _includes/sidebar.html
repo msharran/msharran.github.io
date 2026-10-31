@@ -1,24 +1,12 @@
 {%- assign current_path = page.url | default: '/' -%}
-<aside class="site-sidebar" aria-label="Site navigation">
-  <a class="site-sidebar__brand" href="{{ '/' | relative_url }}" aria-label="Sharran M, home">
-    <span class="site-sidebar__mark" aria-hidden="true">SM</span>
-    <span class="site-sidebar__name">Sharran M</span>
-  </a>
-
-  {% unless current_path contains '/profile/' %}
-  <nav class="site-sidebar__nav" aria-label="Site sections">
-    <a class="site-sidebar__link{% if current_path == '/' %} is-active{% endif %}"
-       href="{{ '/' | relative_url }}"{% if current_path == '/' %} aria-current="page"{% endif %}>
-      <span class="site-sidebar__dot" aria-hidden="true"></span>Intro
-    </a>
-    <a class="site-sidebar__link{% if current_path contains '/devlog/' %} is-active{% endif %}"
-       href="{{ '/devlog/' | relative_url }}"{% if current_path contains '/devlog/' %} aria-current="page"{% endif %}>
-      <span class="site-sidebar__dot" aria-hidden="true"></span>Devlog
-    </a>
-    <a class="site-sidebar__link{% if current_path contains '/notes/' %} is-active{% endif %}"
-       href="{{ '/notes/' | relative_url }}"{% if current_path contains '/notes/' %} aria-current="page"{% endif %}>
-      <span class="site-sidebar__dot" aria-hidden="true"></span>Notes
-    </a>
+<header class="site-header">
+  <a class="brand" href="{{ '/' | relative_url }}" aria-label="Sharran M, home">SM<span aria-hidden="true"> / </span><span class="brand-name">Sharran M</span></a>
+  <nav class="site-nav" aria-label="Main navigation">
+    {% assign paths = '/,/devlog/,/notes/,/profile/' | split: ',' %}
+    {% assign labels = 'Intro,Devlog,Notes,Profile' | split: ',' %}
+    {% for path in paths %}
+    <a href="{{ path | relative_url }}"{% if current_path == path or path != '/' and current_path contains path %} aria-current="page"{% endif %}>{{ labels[forloop.index0] }}</a>
+    {% endfor %}
   </nav>
-  {% endunless %}
-</aside>
+  <button class="theme-toggle" type="button" aria-label="Switch to light theme" aria-pressed="false" hidden><span class="toggle-track" aria-hidden="true"></span><span class="theme-label">Light</span></button>
+</header>
