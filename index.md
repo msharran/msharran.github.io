@@ -18,7 +18,8 @@ title: Sharran M
 </section>
 <section class="home-section" aria-labelledby="latest-title">
   <div class="section-heading"><h2 id="latest-title">Recent field notes</h2><a href="{{ '/devlog/' | relative_url }}">All entries ↗</a></div>
-  <div class="featured-entry"><span class="eyebrow">01 / Latest entry</span><div><time class="eyebrow" datetime="2026-10-05">05 Oct 2026</time><h3><a href="{{ '/devlog/20261005-learning-about-egress-security/' | relative_url }}">Learning about egress security <span aria-hidden="true">↗</span></a></h3><p>Following outbound traffic, understanding the controls, and designing a safer perimeter.</p></div></div>
+  <div class="featured-entry"><span class="eyebrow">01 / Latest entry</span><div><time class="eyebrow" datetime="2026-10-31">31 Oct 2026</time><h3><a href="{{ '/devlog/20261031-kube-proxy-iptables-nftables-from-go/' | relative_url }}">How kube-proxy programs iptables and nftables from Go <span aria-hidden="true">↗</span></a></h3><p>Following Go buffers and transactions through userspace tools to kernel networking rules.</p></div></div>
+  <a class="compact-entry" href="{{ '/devlog/20261005-learning-about-egress-security/' | relative_url }}"><time datetime="2026-10-05">05 Oct 2026</time><span>Learning about egress security</span><span aria-hidden="true">↗</span></a>
   <a class="compact-entry" href="{{ '/devlog/20260818-one-claude-md-many-harnesses/' | relative_url }}"><time datetime="2026-08-18">18 Aug 2026</time><span>One CLAUDE.md, many harnesses</span><span aria-hidden="true">↗</span></a>
   <a class="compact-entry" href="{{ '/devlog/20260818-two-to-one-dotfiles-cursor-cloud-agents/' | relative_url }}"><time datetime="2026-08-18">18 Aug 2026</time><span>2 → 1 dotfiles, done with Cursor Cloud Agents</span><span aria-hidden="true">↗</span></a>
 </section>
