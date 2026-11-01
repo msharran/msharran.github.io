@@ -10,16 +10,42 @@ description: "A quick source dive into how Go hands networking rules to Linux us
 
 I knew `iptables` and `nft` as Linux userspace commands. So how did kube-proxy, written in Go, configure them? I expected something closer to C, Rust, or Zig.
 
-Following the source answered it:
+The key excerpts (not standalone programs):
 
-- **iptables mode:** Go builds rule text, then [pipes it to `iptables-restore`][iptables] through an exec wrapper backed by [`os/exec`][exec].
-- **nftables mode:** Go builds a `knftables.Transaction`. The library converts it to command text and [runs `nft -f -`][nft], passing the batch through stdin. No temporary rules file.
+**iptables mode:** Go builds rule text and [pipes it to `iptables-restore`][iptables]:
+
+```go
+cmd := runner.exec.Command(iptablesRestoreCmd, fullArgs...)
+cmd.SetStdin(bytes.NewBuffer(data))
+```
+
+That wrapper [delegates to `os/exec`][exec]:
+
+```go
+return (*cmdWrapper)(maskErrDotCmd(osexec.Command(cmd, args...)))
+```
+
+**nftables mode:** Go builds a `knftables.Transaction`. The library converts it to text and [runs `nft -f -`][nft]:
+
+```go
+cmd := exec.CommandContext(ctx, nft.path, "-f", "-")
+cmd.Stdin = nft.buffer
+```
+
+The batch goes through stdin. No temporary rules file.
 
 Both paths batch updates instead of starting a process for every rule. The userspace tools configure the kernel; **the kernel handles the packets**.
 
 My assumption about Go was too narrow. Go can make system calls and use netlink directly. These subprocesses are an implementation choice, not a language limitation.
 
-One wrinkle: the inspected nftables implementation can [use netlink for reads][netlink], while writes still go through `nft -f -`.
+One wrinkle: the inspected nftables implementation can [use netlink for reads][netlink]:
+
+```go
+// UseNetlink: use the experimental netlink version of the List* methods rather than
+// using `nft list`.
+```
+
+Writes still go through `nft -f -`.
 
 What clicked for me: ask which Linux interface a program uses, rather than assuming its language determines how close it can get to the kernel.
 
