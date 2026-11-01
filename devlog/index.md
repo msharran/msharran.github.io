@@ -8,9 +8,13 @@ permalink: /devlog/
   <p class="eyebrow">01 / The working notebook</p>
   <h1 id="devlog-title">Devlog<span class="hero-period">.</span></h1>
   <p class="index-intro">Systems built. Ideas tested. Lessons kept.<br>Notes from the workbench, in reverse chronological order.</p>
-  <div class="index-label"><span>2026 / 10 entries</span><span>Latest first ↓</span></div>
+  <div class="index-label"><span>2026 / 11 entries</span><span>Latest first ↓</span></div>
 
   <ol class="devlog-list">
+    <li class="devlog-item">
+      <time class="devlog-date" datetime="2026-10-31">October 31, 2026</time>
+      <a class="devlog-link" href="{{ '/devlog/20261031-kube-proxy-iptables-nftables-from-go/' | relative_url }}">How kube-proxy Programs iptables and nftables from Go</a>
+    </li>
     <li class="devlog-item">
       <time class="devlog-date" datetime="2026-10-05">October 5, 2026</time>
       <a class="devlog-link" href="{{ '/devlog/20261005-learning-about-egress-security/' | relative_url }}">Learning About Egress Security — Part 1</a>
